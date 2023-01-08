@@ -1,0 +1,859 @@
+project: EXAMPLE
+job: readme_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/readme_0.1.item
+id: tMsgBox_1  type: tMsgBox
+job: tServerAlive_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tServerAlive_0.1.item
+id: tServerAlive_1  type: tServerAlive
+id: tServerAlive_2  type: tServerAlive
+id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_2  type: tMsgBox
+id: tMsgBox_3  type: tMsgBox
+id: tMsgBox_4  type: tMsgBox
+job: tWaitForFile_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tWaitForFile_0.1.item
+id: tWaitForFile_1  type: tWaitForFile
+id: tFileCopy_1  type: tFileCopy
+job: tMsgBox2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tMsgBox2_0.1.item
+id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_3  type: tMsgBox
+id: tDie_1  type: tDie
+job: tForeach_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tForeach_0.1.item
+id: tForeach_1  type: tForeach
+id: tJava_1  type: tJava
+job: tContextLoad_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tContextLoad_0.1.item
+id: tMsgBox_1  type: tMsgBox
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tContextLoad_1  type: tContextLoad
+job: tAddLocationFromIP_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tAddLocationFromIP_0.1.item
+id: tFixedFlowInput_1  type: tFixedFlowInput
+id: tAddLocationFromIP_1  type: tAddLocationFromIP
+id: tLogRow_1  type: tLogRow
+id: tFixedFlowInput_2  type: tFixedFlowInput
+id: tAddLocationFromIP_2  type: tAddLocationFromIP
+id: tLogRow_2  type: tLogRow
+job: tSleep_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tSleep_0.1.item
+id: tSleep_1  type: tSleep
+id: tSleep_2  type: tSleep
+id: tStatCatcher_1  type: tStatCatcher
+id: tLogRow_1  type: tLogRow
+job: tFlowToIterate_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tFlowToIterate_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tFlowToIterate_1  type: tFlowToIterate
+id: tFileInputDelimited_2  type: tFileInputDelimited
+id: tLogRow_1  type: tLogRow
+job: tRowGenerator_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tRowGenerator_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+job: tFixedFlowInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tFixedFlowInput_0.1.item
+id: tFixedFlowInput_1  type: tFixedFlowInput
+id: tLogRow_1  type: tLogRow
+job: tMsgBox_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tMsgBox_0.1.item
+id: tMsgBox_1  type: tMsgBox
+job: tLoop_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Misc/tLoop_0.1.item
+id: tLoop_1  type: tLoop
+id: tJava_1  type: tJava
+job: tLibraryLoad_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/CustomCode/tLibraryLoad_0.1.item
+id: tLibraryLoad_1  type: tLibraryLoad
+id: tJava_1  type: tJava
+job: tGroovyFile_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/CustomCode/tGroovyFile_0.1.item
+id: tGroovyFile_1  type: tGroovyFile
+job: tGroovy_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/CustomCode/tGroovy_0.1.item
+id: tGroovy_1  type: tGroovy
+job: tJavaRow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/CustomCode/tJavaRow_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tJavaRow_1  type: tJavaRow
+id: tLogRow_1  type: tLogRow
+job: tSetGlobalVar_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/CustomCode/tSetGlobalVar_0.1.item
+id: tSetGlobalVar_1  type: tSetGlobalVar
+id: tMsgBox_1  type: tMsgBox
+job: tJavaFlex_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/CustomCode/tJavaFlex_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tJavaFlex_1  type: tJavaFlex
+job: tJava_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/CustomCode/tJava_0.1.item
+id: tJava_1  type: tJava
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+job: tMysqlSP_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/SP/tMysqlSP_0.1.item
+id: tMysqlSP_1  type: tMysqlSP
+id: tLogRow_1  type: tLogRow
+id: tMysqlRow_1  type: tMysqlRow
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutput_2  type: tMysqlOutput
+job: Connection_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/Connection_0.1.item
+id: tMysqlConnection_1  type: tMysqlConnection
+id: tMysqlCommit_1  type: tMysqlCommit
+id: tMysqlRollback_1  type: tMysqlRollback
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutput_1  type: tMysqlOutput
+job: tMysqlOutputBulkExec_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/Bulk/tMysqlOutputBulkExec_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutputBulkExec_1  type: tMysqlOutputBulkExec
+job: tMysqlBulkExec_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/Bulk/tMysqlBulkExec_0.1.item
+id: tMysqlBulkExec_1  type: tMysqlBulkExec
+id: tRunJob_1  type: tRunJob
+job: tMysqlOutputBulk_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/Bulk/tMysqlOutputBulk_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutputBulk_1  type: tMysqlOutputBulk
+job: tSybaseInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/Sybase/tSybaseInput_0.1.item
+id: tSybaseInput_1  type: tSybaseInput
+id: tLogRow_1  type: tLogRow
+job: tSybaseOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/Sybase/tSybaseOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tSybaseOutput_1  type: tSybaseOutput
+job: tPostgreSQLInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/PostgreSQL/tPostgreSQLInput_0.1.item
+id: tPostgresqlInput_1  type: tPostgresqlInput
+id: tLogRow_1  type: tLogRow
+job: tPostgreSQLOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/PostgreSQL/tPostgreSQLOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tPostgresqlOutput_1  type: tPostgresqlOutput
+job: tAccessInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/Access/tAccessInput_0.1.item
+id: tAccessInput_1  type: tAccessInput
+id: tLogRow_1  type: tLogRow
+job: tAccessOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/Access/tAccessOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tAccessOutput_1  type: tAccessOutput
+job: tOracleInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/Oracle/tOracleInput_0.1.item
+id: tOracleInput_1  type: tOracleInput
+id: tLogRow_1  type: tLogRow
+job: tOracleOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/Oracle/tOracleOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tOracleOutput_1  type: tOracleOutput
+job: tSQLiteInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/SQLite/tSQLiteInput_0.1.item
+id: tSQLiteInput_1  type: tSQLiteInput
+id: tLogRow_1  type: tLogRow
+job: tSQLiteOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/SQLite/tSQLiteOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tSQLiteOutput_1  type: tSQLiteOutput
+job: tMysqlInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/MySQL/tMysqlInput_0.1.item
+id: tMysqlInput_1  type: tMysqlInput
+id: tLogRow_1  type: tLogRow
+job: tMysqlOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/MySQL/tMysqlOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutput_1  type: tMysqlOutput
+job: tAS400Output_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/AS400/tAS400Output_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tAS400Output_1  type: tAS400Output
+job: tAS400Input_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/AS400/tAS400Input_0.1.item
+id: tAS400Input_1  type: tAS400Input
+id: tLogRow_1  type: tLogRow
+job: tDBInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/DBGeneric/tDBInput_0.1.item
+id: tDBInput_1  type: tDBInput
+id: tLogRow_1  type: tLogRow
+job: tDBOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/DBGeneric/tDBOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tDBOutput_1  type: tDBOutput
+job: tMSSqlInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/MSSQLServer/tMSSqlInput_0.1.item
+id: tMSSqlInput_1  type: tMSSqlInput
+id: tLogRow_1  type: tLogRow
+job: tMSSqlOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/MSSQLServer/tMSSqlOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tMSSqlOutput_1  type: tMSSqlOutput
+job: tDB2Output_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/DB2/tDB2Output_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tDB2Output_1  type: tDB2Output
+job: tDB2Input_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/InOut/DB2/tDB2Input_0.1.item
+id: tDB2Input_1  type: tDB2Input
+id: tLogRow_1  type: tLogRow
+job: ComponentRow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/ComponentRow_0.1.item
+id: tMysqlRow_1  type: tMysqlRow
+id: tMysqlRow_2  type: tMysqlRow
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutput_1  type: tMysqlOutput
+id: tCreateTable_1  type: tCreateTable
+job: step2ModifyData_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/SCD/step2ModifyData_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutput_1  type: tMysqlOutput
+id: tMysqlInput_1  type: tMysqlInput
+id: tMap_1  type: tMap
+id: tMysqlOutput_2  type: tMysqlOutput
+id: tMysqlInput_2  type: tMysqlInput
+id: tMysqlOutput_3  type: tMysqlOutput
+id: tMysqlInput_3  type: tMysqlInput
+id: tSetGlobalVar_1  type: tSetGlobalVar
+job: scd_step2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/SCD/scd_step2_0.1.item
+id: tCreateTable_1  type: tCreateTable
+id: tMysqlInput_1  type: tMysqlInput
+id: tMap_1  type: tMap
+id: tMysqlSCD_3  type: tMysqlSCD
+id: tJava_1  type: tJava
+id: tMysqlInput_6  type: tMysqlInput
+id: tLogRow_1  type: tLogRow
+id: tJava_3  type: tJava
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutput_1  type: tMysqlOutput
+id: tMysqlInput_5  type: tMysqlInput
+id: tMap_3  type: tMap
+id: tMysqlSCD_1  type: tMysqlSCD
+id: tJava_4  type: tJava
+id: tMysqlInput_9  type: tMysqlInput
+id: tLogRow_4  type: tLogRow
+id: tJava_5  type: tJava
+id: tMysqlInput_10  type: tMysqlInput
+id: tLogRow_5  type: tLogRow
+id: tMysqlInput_8  type: tMysqlInput
+id: tLogRow_3  type: tLogRow
+job: step1CreateTable_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/SCD/step1CreateTable_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tMysqlOutput_1  type: tMysqlOutput
+job: tMysqlSCD_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/SCD/tMysqlSCD_0.1.item
+id: tMysqlInput_1  type: tMysqlInput
+id: tMap_1  type: tMap
+id: tMysqlSCD_1  type: tMysqlSCD
+id: tMysqlInput_2  type: tMysqlInput
+id: tLogRow_1  type: tLogRow
+id: tCreateTable_1  type: tCreateTable
+job: scd_step1_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Databases/SCD/scd_step1_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutput_2  type: tMysqlOutput
+job: tFileInputDelimitedCSV_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputDelimitedCSV_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tLogRow_1  type: tLogRow
+job: tFileInputMail_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputMail_0.1.item
+id: tFileInputMail_1  type: tFileInputMail
+id: tLogRow_1  type: tLogRow
+job: tFileInputMSDelimited_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputMSDelimited_0.1.item
+id: tFileInputMSDelimited_1  type: tFileInputMSDelimited
+id: tLogRow_1  type: tLogRow
+id: tLogRow_2  type: tLogRow
+id: tLogRow_3  type: tLogRow
+job: tFileInputMSXML_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputMSXML_0.1.item
+id: tFileInputMSXML_1  type: tFileInputMSXML
+id: tLogRow_3  type: tLogRow
+id: tLogRow_4  type: tLogRow
+id: tFileInputXML_1  type: tFileInputXML
+id: tLogRow_2  type: tLogRow
+id: tFileInputXML_2  type: tFileInputXML
+id: tLogRow_1  type: tLogRow
+job: tFileRegex_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileRegex_0.1.item
+id: tFileInputRegex_1  type: tFileInputRegex
+id: tLogRow_1  type: tLogRow
+job: tFileInputXML_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputXML_0.1.item
+id: tFileInputXML_1  type: tFileInputXML
+id: tLogRow_1  type: tLogRow
+job: tFileInputPositional_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputPositional_0.1.item
+id: tFileInputPositional_1  type: tFileInputPositional
+id: tLogRow_1  type: tLogRow
+job: tFileInputLDIF_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputLDIF_0.1.item
+id: tFileInputLDIF_1  type: tFileInputLDIF
+id: tLogRow_1  type: tLogRow
+job: tFileInputDelimited_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputDelimited_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tLogRow_1  type: tLogRow
+job: tFileInputARFF_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputARFF_0.1.item
+id: tFileInputARFF_1  type: tFileInputARFF
+id: tLogRow_1  type: tLogRow
+job: tFileInputMSPositional_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputMSPositional_0.1.item
+id: tFileInputMSPositional_1  type: tFileInputMSPositional
+id: tLogRow_1  type: tLogRow
+id: tLogRow_2  type: tLogRow
+id: tLogRow_3  type: tLogRow
+job: tFileInputExcel_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Input/tFileInputExcel_0.1.item
+id: tFileInputExcel_1  type: tFileInputExcel
+id: tLogRow_1  type: tLogRow
+job: tFileOutputDelimited_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tFileOutputDelimited_0.1.item
+id: tRowGenerator_2  type: tRowGenerator
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+job: tAdvancedFileOutputXML_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tAdvancedFileOutputXML_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tAdvancedFileOutputXML_1  type: tAdvancedFileOutputXML
+job: tFileOutputMSPositional_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tFileOutputMSPositional_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tFileOutputMSPositional_1  type: tFileOutputMSPositional
+id: tRowGenerator_2  type: tRowGenerator
+job: tFileOutputPositional_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tFileOutputPositional_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tFileOutputPositional_1  type: tFileOutputPositional
+job: tFileOutputExcel_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tFileOutputExcel_0.1.item
+id: tRowGenerator_2  type: tRowGenerator
+id: tFileOutputExcel_2  type: tFileOutputExcel
+job: tFileOutputMSDelimited_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tFileOutputMSDelimited_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tFileOutputMSDelimited_2  type: tFileOutputMSDelimited
+id: tRowGenerator_2  type: tRowGenerator
+job: tFileOutputMSXML_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tFileOutputMSXML_0.1.item
+id: tFileInputDelimited_2  type: tFileInputDelimited
+id: tFileOutputMSXML_1  type: tFileOutputMSXML
+id: tFileInputDelimited_3  type: tFileInputDelimited
+job: tFileOutputXML_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tFileOutputXML_0.1.item
+id: tRowGenerator_2  type: tRowGenerator
+id: tFileOutputXML_1  type: tFileOutputXML
+job: tFileOutputLDIF_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tFileOutputLDIF_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tFileOutputLDIF_1  type: tFileOutputLDIF
+job: tFileOutputDelimitedCSV_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Output/tFileOutputDelimitedCSV_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+job: tFileArchive_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tFileArchive_0.1.item
+id: tFileArchive_1  type: tFileArchive
+job: tFileCompare_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tFileCompare_0.1.item
+id: tFileCompare_1  type: tFileCompare
+id: tLogRow_1  type: tLogRow
+id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_2  type: tMsgBox
+job: tFileUnarchive_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tFileUnarchive_0.1.item
+id: tFileUnarchive_2  type: tFileUnarchive
+job: tFileProperties_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tFileProperties_0.1.item
+id: tFileProperties_1  type: tFileProperties
+id: tLogRow_1  type: tLogRow
+job: tFileRowCount_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tFileRowCount_0.1.item
+id: tFileRowCount_1  type: tFileRowCount
+id: tMsgBox_1  type: tMsgBox
+job: tFileTouch_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tFileTouch_0.1.item
+id: tFileTouch_1  type: tFileTouch
+job: tFileList_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tFileList_0.1.item
+id: tFileList_1  type: tFileList
+id: tJava_1  type: tJava
+job: tFileExist_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tFileExist_0.1.item
+id: tFileExist_1  type: tFileExist
+id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_2  type: tMsgBox
+job: tCreateTemporaryFile_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tCreateTemporaryFile_0.1.item
+id: tCreateTemporaryFile_1  type: tCreateTemporaryFile
+id: tRowGenerator_1  type: tRowGenerator
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tLogRow_1  type: tLogRow
+id: tMsgBox_1  type: tMsgBox
+job: tFileDelete_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/File/Management/tFileDelete_0.1.item
+id: tFileDelete_1  type: tFileDelete
+job: tMap_3_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tMap/tMap_3_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tMap_1  type: tMap
+id: tLogRow_2  type: tLogRow
+job: tMap_2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tMap/tMap_2_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tMap_1  type: tMap
+job: tMap_4_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tMap/tMap_4_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tMap_1  type: tMap
+id: tRowGenerator_2  type: tRowGenerator
+id: tLogRow_2  type: tLogRow
+job: tMap_Reload_At_Each_Row_2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tMap/Reload_At_Each_Row/tMap_Reload_At_Each_Row_2_0.1.item
+id: tRunJob_1  type: tRunJob
+id: tMysqlConnection_1  type: tMysqlConnection
+id: tMysqlInput_1  type: tMysqlInput
+id: tMap_1  type: tMap
+id: tMysqlInput_2  type: tMysqlInput
+id: tLogRow_1  type: tLogRow
+id: tLogRow_2  type: tLogRow
+job: tMap_Reload_At_Each_Row_1_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tMap/Reload_At_Each_Row/tMap_Reload_At_Each_Row_1_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutput_1  type: tMysqlOutput
+id: tRowGenerator_2  type: tRowGenerator
+id: tMysqlOutput_2  type: tMysqlOutput
+job: tMapParse_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tMap/tMapParse_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tRowGenerator_2  type: tRowGenerator
+id: tMap_1  type: tMap
+id: tLogRow_1  type: tLogRow
+job: tMap_1_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tMap/tMap_1_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tMap_1  type: tMap
+job: tExternalSortRow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tExternalSortRow_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tExternalSortRow_1  type: tExternalSortRow
+id: tLogRow_1  type: tLogRow
+job: tSortRow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tSortRow_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tSortRow_1  type: tSortRow
+id: tLogRow_1  type: tLogRow
+job: tReplicate_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tReplicate_0.1.item
+id: tRowGenerator_2  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tReplicate_1  type: tReplicate
+id: tLogRow_2  type: tLogRow
+job: tReplace_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tReplace_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tReplace_1  type: tReplace
+job: tFilterColumns_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tFilterColumns_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tFilterColumns_1  type: tFilterColumns
+id: tLogRow_1  type: tLogRow
+job: tSampleRow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tSampleRow_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tSampleRow_1  type: tSampleRow
+id: tLogRow_1  type: tLogRow
+job: tBufferOutput2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tBufferOutput2_0.1.item
+id: tRunJob_1  type: tRunJob
+id: tLogRow_1  type: tLogRow
+job: tNormalize_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tNormalize_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tNormalize_1  type: tNormalize
+id: tLogRow_1  type: tLogRow
+job: tFilterRows_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tFilterRows_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tFilterRow_1  type: tFilterRow
+id: tLogRow_1  type: tLogRow
+id: tLogRow_2  type: tLogRow
+job: tJoin_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tJoin_0.1.item
+id: tRowGenerator_2  type: tRowGenerator
+id: tRowGenerator_1  type: tRowGenerator
+id: tJoin_1  type: tJoin
+id: tLogRow_1  type: tLogRow
+id: tLogRow_2  type: tLogRow
+job: tAggregateRow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tAggregateRow_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tAggregateRow_1  type: tAggregateRow
+id: tLogRow_1  type: tLogRow
+job: tExtractPositionalFields_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/Fields/tExtractPositionalFields_0.1.item
+id: tFileInputPositional_1  type: tFileInputPositional
+id: tExtractPositionalFields_1  type: tExtractPositionalFields
+id: tLogRow_1  type: tLogRow
+job: tExtractDelimitedFields_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/Fields/tExtractDelimitedFields_0.1.item
+id: tFileInputDelimited_2  type: tFileInputDelimited
+id: tExtractDelimitedFields_1  type: tExtractDelimitedFields
+id: tLogRow_1  type: tLogRow
+job: tExtractRegexFields_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/Fields/tExtractRegexFields_0.1.item
+id: tFileInputRegex_1  type: tFileInputRegex
+id: tExtractRegexFields_1  type: tExtractRegexFields
+id: tLogRow_1  type: tLogRow
+job: tBufferOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tBufferOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tBufferOutput_1  type: tBufferOutput
+job: tAggregateSortedRow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tAggregateSortedRow_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tSortRow_1  type: tSortRow
+id: tAggregateSortedRow_2  type: tAggregateSortedRow
+id: tLogRow_1  type: tLogRow
+job: tDenormalize_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Processing/tDenormalize_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tDenormalize_1  type: tDenormalize
+job: tChronometer_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/LogError/tChronometer_0.1.item
+id: tChronometerStart_1  type: tChronometerStart
+id: tChronometerStop_1  type: tChronometerStop
+id: tSleep_1  type: tSleep
+job: tStatCatcher2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/LogError/tStatCatcher2_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tUniqRow_1  type: tUniqRow
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+id: tStatCatcher_1  type: tStatCatcher
+id: tLogRow_1  type: tLogRow
+job: tFlowMeter1_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/LogError/tFlowMeter1_0.1.item
+id: tFlowMeterCatcher_1  type: tFlowMeterCatcher
+id: tLogRow_1  type: tLogRow
+id: tRowGenerator_1  type: tRowGenerator
+id: tFlowMeter_1  type: tFlowMeter
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+job: tAssert_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/LogError/tAssert_0.1.item
+id: tAssertCatcher_1  type: tAssertCatcher
+id: tLogRow_2  type: tLogRow
+id: tAssert_1  type: tAssert
+id: tAssert_2  type: tAssert
+job: tLogCatcher1_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/LogError/tLogCatcher1_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+id: tDie_1  type: tDie
+id: tWarn_1  type: tWarn
+id: tLogCatcher_1  type: tLogCatcher
+id: tLogRow_1  type: tLogRow
+job: tStatCatcher1_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/LogError/tStatCatcher1_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tUniqRow_1  type: tUniqRow
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+id: tStatCatcher_1  type: tStatCatcher
+id: tLogRow_1  type: tLogRow
+job: tLogCatcher2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/LogError/tLogCatcher2_0.1.item
+id: tWarn_1  type: tWarn
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+id: tDie_1  type: tDie
+id: tLogCatcher_1  type: tLogCatcher
+id: tLogRow_1  type: tLogRow
+job: tFlowMeter2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/LogError/tFlowMeter2_0.1.item
+id: tFlowMeterCatcher_1  type: tFlowMeterCatcher
+id: tLogRow_1  type: tLogRow
+id: tRowGenerator_2  type: tRowGenerator
+id: tFlowMeter_2  type: tFlowMeter
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+job: tDTDValidator_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/XML/tDTDValidator_0.1.item
+id: tDTDValidator_1  type: tDTDValidator
+id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_2  type: tMsgBox
+job: xmlSample2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/XML/xmlSample2_0.1.item
+id: tFileInputXML_3  type: tFileInputXML
+id: tLogRow_1  type: tLogRow
+id: tMap_1  type: tMap
+id: tFileInputXML_2  type: tFileInputXML
+job: tXSLT_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/XML/tXSLT_0.1.item
+id: tXSLT_1  type: tXSLT
+id: tMsgBox_1  type: tMsgBox
+job: tAdvancedFOXML_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/XML/tAdvancedFOXML_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tAdvancedFileOutputXML_1  type: tAdvancedFileOutputXML
+job: tXSDValidator_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/XML/tXSDValidator_0.1.item
+id: tXSDValidator_1  type: tXSDValidator
+id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_2  type: tMsgBox
+job: tAddCRC_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/DataQuality/tAddCRC_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tAddCRCRow_1  type: tAddCRCRow
+id: tLogRow_1  type: tLogRow
+job: tFuzzyMatch_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/DataQuality/tFuzzyMatch_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tFuzzyMatch_1  type: tFuzzyMatch
+id: tLogRow_1  type: tLogRow
+id: tFixedFlowInput_1  type: tFixedFlowInput
+job: tUniqRow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/DataQuality/tUniqRow_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tUniqRow_1  type: tUniqRow
+id: tLogRow_1  type: tLogRow
+id: tLogRow_2  type: tLogRow
+job: tIntervalMatch_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/DataQuality/tIntervalMatch_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tIntervalMatch_1  type: tIntervalMatch
+id: tLogRow_1  type: tLogRow
+id: tFileInputDelimited_1  type: tFileInputDelimited
+job: tSchemaComplianceCheck_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/DataQuality/tSchemaComplianceCheck_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tSchemaComplianceCheck_1  type: tSchemaComplianceCheck
+id: tLogRow_1  type: tLogRow
+id: tLogRow_2  type: tLogRow
+job: DirectoryGeneration_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/DataQuality/tFuzzyMatch/DirectoryGeneration_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tUniqRow_1  type: tUniqRow
+id: tMysqlOutput_1  type: tMysqlOutput
+id: tMysqlInput_1  type: tMysqlInput
+id: tUniqRow_2  type: tUniqRow
+id: tLogRow_1  type: tLogRow
+job: DirectoryService_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/DataQuality/tFuzzyMatch/DirectoryService_0.1.item
+id: tFixedFlowInput_1  type: tFixedFlowInput
+id: tFuzzyMatch_1  type: tFuzzyMatch
+id: tMysqlInput_1  type: tMysqlInput
+id: tMap_2  type: tMap
+id: tFuzzyMatch_2  type: tFuzzyMatch
+id: tMysqlInput_3  type: tMysqlInput
+id: tMap_1  type: tMap
+id: tMysqlInput_2  type: tMysqlInput
+id: tLogRow_1  type: tLogRow
+job: tReplaceList_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/DataQuality/tReplaceList_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tReplaceList_1  type: tReplaceList
+id: tLogRow_1  type: tLogRow
+id: tFileInputDelimited_1  type: tFileInputDelimited
+job: tAddCRC_0.2
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/DataQuality/tAddCRC_0.2.item
+id: tRowGenerator_2  type: tRowGenerator
+id: tAddCRCRow_1  type: tAddCRCRow
+id: tLogRow_1  type: tLogRow
+job: tWebServiceInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Internet/tWebServiceInput_0.1.item
+id: tWebServiceInput_1  type: tWebServiceInput
+id: tLogRow_1  type: tLogRow
+job: tSocketInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Internet/tSocketInput_0.1.item
+id: tSocketInput_1  type: tSocketInput
+id: tLogRow_1  type: tLogRow
+job: tPop_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Internet/tPop_0.1.item
+id: tPOP_1  type: tPOP
+id: tFileInputMail_1  type: tFileInputMail
+id: tLogRow_1  type: tLogRow
+job: tSocketOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Internet/tSocketOutput_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tSocketOutput_1  type: tSocketOutput
+job: tSVNLogInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Internet/tSVNLogInput_0.1.item
+id: tSVNLogInput_1  type: tSVNLogInput
+id: tLogRow_1  type: tLogRow
+job: tMomOutput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Internet/tMomOutput_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tMomOutput_2  type: tMomOutput
+job: tSendMail_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Internet/tSendMail_0.1.item
+id: tSendMail_1  type: tSendMail
+job: tMomInput_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Internet/tMomInput_0.1.item
+id: tMomInput_1  type: tMomInput
+id: tLogRow_1  type: tLogRow
+job: tFileFetch_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Internet/tFileFetch_0.1.item
+id: tFileFetch_2  type: tFileFetch
+id: tFileInputDelimited_2  type: tFileInputDelimited
+id: tLogRow_2  type: tLogRow
+job: tWaitForSocket_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Orchestration/tWaitForSocket_0.1.item
+id: tWaitForSocket_1  type: tWaitForSocket
+id: tMsgBox_1  type: tMsgBox
+job: tIterateToFlow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Orchestration/tIterateToFlow_0.1.item
+id: tFileList_1  type: tFileList
+id: tIterateToFlow_1  type: tIterateToFlow
+id: tLogRow_1  type: tLogRow
+job: tUnite_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Orchestration/tUnite_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tUnite_1  type: tUnite
+id: tLogRow_1  type: tLogRow
+id: tRowGenerator_2  type: tRowGenerator
+job: tPreJob_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Orchestration/tPreJob_0.1.item
+id: tPrejob_1  type: tPrejob
+id: tPostjob_1  type: tPostjob
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tSleep_1  type: tSleep
+id: tSleep_2  type: tSleep
+job: step2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Orchestration/tWaitForSQL/step2_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tMysqlOutput_1  type: tMysqlOutput
+job: tWaitForSqlData_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/Orchestration/tWaitForSQL/tWaitForSqlData_0.1.item
+id: tWaitForSqlData_1  type: tWaitForSqlData
+id: tMsgBox_1  type: tMsgBox
+id: tCreateTable_1  type: tCreateTable
+id: tMysqlConnection_1  type: tMysqlConnection
+job: tSetEnv_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/System_/tSetEnv_0.1.item
+id: tSetEnv_1  type: tSetEnv
+id: tMsgBox_1  type: tMsgBox
+job: tSSH_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/System_/tSSH_0.1.item
+id: tSSH_1  type: tSSH
+job: jobParent_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/System_/tRunJob/jobParent_0.1.item
+id: tMsgBox_1  type: tMsgBox
+id: tRunJob_1  type: tRunJob
+job: jobAndContext_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/System_/tRunJob/tRunJobAndContext/jobAndContext_0.1.item
+id: tMsgBox_2  type: tMsgBox
+id: tRunJob_2  type: tRunJob
+job: jobChildren_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/System_/tRunJob/jobChildren_0.1.item
+id: tMsgBox_1  type: tMsgBox
+job: tRunJobRow_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/System_/tRunJobRow/tRunJobRow_0.1.item
+id: tRunJob_2  type: tRunJob
+id: tLogRow_1  type: tLogRow
+job: jobSample_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/System_/tRunJobRow/jobSample_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tBufferOutput_1  type: tBufferOutput
+job: tSystem_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/System_/tSystem_0.1.item
+id: tSystem_1  type: tSystem
+job: ELTdemo_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/ELT/ELTdemo_0.1.item
+id: tELTMysqlInput_1  type: tELTMysqlInput
+id: tELTMysqlOutput_1  type: tELTMysqlOutput
+id: tELTMysqlMap_1  type: tELTMysqlMap
+id: tRunJob_1  type: tRunJob
+job: createTables4ETL_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/ELT/createTables4ETL_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tUniqRow_1  type: tUniqRow
+id: tMysqlOutput_1  type: tMysqlOutput
+id: tCreateTable_1  type: tCreateTable
+job: generic_elt_step1_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/ELT/Generic/generic_elt_step1_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tMysqlOutput_1  type: tMysqlOutput
+id: tFileInputDelimited_2  type: tFileInputDelimited
+id: tMysqlOutput_2  type: tMysqlOutput
+job: generic_elt_step2_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t01_Compo/ELT/Generic/generic_elt_step2_0.1.item
+id: tMysqlConnection_1  type: tMysqlConnection
+id: tELTMysqlInput_1  type: tELTMysqlInput
+id: tELTMysqlMap_1  type: tELTMysqlMap
+id: tELTMysqlOutput_1  type: tELTMysqlOutput
+id: tELTMysqlInput_2  type: tELTMysqlInput
+id: tCreateTable_1  type: tCreateTable
+id: tCreateTable_2  type: tCreateTable
+id: tSQLTemplateCommit_1  type: tSQLTemplateCommit
+id: tSQLTemplateAggregate_1  type: tSQLTemplateAggregate
+job: repositoryContext_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t04_Context/repositoryContext_0.1.item
+id: tMsgBox_1  type: tMsgBox
+job: built_inContext_prompt_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t04_Context/built_inContext_prompt_0.1.item
+id: tFileFetch_1  type: tFileFetch
+job: built_inContext_1_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t04_Context/built_inContext_1_0.1.item
+id: tFileFetch_1  type: tFileFetch
+job: tContextLoad_and_file_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t04_Context/tContextLoad_and_file_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tContextLoad_1  type: tContextLoad
+id: tRSSInput_1  type: tRSSInput
+id: tLogRow_1  type: tLogRow
+job: beforeRunJobs_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/beforeRunJobs_0.1.item
+id: tFileUnarchive_1  type: tFileUnarchive
+id: tFileTouch_1  type: tFileTouch
+job: demo02_defineProperties_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t03_DemoRoutines/demo02_defineProperties_0.1.item
+id: tFileFetch_1  type: tFileFetch
+job: demo01_tJava_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t03_DemoRoutines/demo01_tJava_0.1.item
+id: tJava_1  type: tJava
+job: demo03_tMap_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t03_DemoRoutines/demo03_tMap_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tMap_1  type: tMap
+job: demo04_tRowGenerator_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t03_DemoRoutines/demo04_tRowGenerator_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+job: link_with_tDie_tWarn_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t02_Concatening/link_with_tDie_tWarn_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tJavaRow_1  type: tJavaRow
+id: tDie_1  type: tDie
+id: tWarn_1  type: tWarn
+id: tLogCatcher_1  type: tLogCatcher
+id: tLogRow_1  type: tLogRow
+job: link_if_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t02_Concatening/link_if_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tLogRow_1  type: tLogRow
+id: tMsgBox_1  type: tMsgBox
+job: onComponentError_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t02_Concatening/onComponentError_0.1.item
+id: tFileInputDelimited_1  type: tFileInputDelimited
+id: tJavaRow_1  type: tJavaRow
+id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_2  type: tMsgBox
+job: OnSubjobError_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/t02_Concatening/OnSubjobError_0.1.item
+id: tRowGenerator_1  type: tRowGenerator
+id: tFileOutputDelimited_1  type: tFileOutputDelimited
+id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_2  type: tMsgBox
+job: priorTest_0.1
+jobuFileName: src/test/resources/test02/EXAMPLE/process/priorTest_0.1.item
+id: tMsgBox_1  type: tMsgBox
