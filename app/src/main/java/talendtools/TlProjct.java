@@ -2,6 +2,8 @@ package talendtools;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -26,7 +28,14 @@ public class TlProjct {
     }
 
     public List<TlJob> getJobList() {
-        return jobList;
+        Collections.sort(this.jobList, new Comparator<TlJob>() {
+            @Override
+            public int compare(TlJob o1, TlJob o2) {
+                return o1.getJobName().compareTo(o2.getJobName());
+            }
+            
+        });
+        return this.jobList;
     }
 
     public void addJob(TlJob job) {
@@ -36,7 +45,7 @@ public class TlProjct {
     public String getStringAll(String prefix){
         StringBuilder sb = new StringBuilder();
         sb.append("project: " + this.projectName + "\n");
-        for(TlJob job:this.jobList){
+        for(TlJob job:getJobList()){
             sb.append(job.getString(prefix));
         }
         return sb.toString();

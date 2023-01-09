@@ -1,6 +1,8 @@
 package talendtools;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -37,7 +39,14 @@ public class TlJob {
     }
 
     public List<TlComponent> getComponentList() {
-        return componentList;
+        Collections.sort(this.componentList, new Comparator<TlComponent>() {
+            @Override
+            public int compare(TlComponent o1, TlComponent o2) {
+                return o1.getId().compareTo(o2.getId());
+            }
+            
+        });
+        return this.componentList;
     }
 
     public void addComponent(TlComponent comp){
@@ -47,8 +56,8 @@ public class TlJob {
     public String getString(String prefix){
         StringBuffer sb = new StringBuffer();
         sb.append(prefix + "job: " + jobName + "\n");
-        sb.append(prefix + "jobuFileName: " + jobuFileName + "\n");
-        for(TlComponent component:this.componentList){
+        sb.append(prefix + "jobFileName: " + jobuFileName + "\n");
+        for(TlComponent component:getComponentList()){
             sb.append(component.getString(prefix + prefix));
         }
         return sb.toString();

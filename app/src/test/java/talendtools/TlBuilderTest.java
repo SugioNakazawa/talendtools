@@ -27,12 +27,13 @@ class TlBuilderTest {
             TlProjct project = tlManage.build("EXAMPLE");
 
             String actualStr = project.getStringAll("");
-            FileWriter fw = new FileWriter("src/test/resources/test01/expect/actual.txt");
+            actualStr = actualStr.replace('¥', '/');    //  for Windows
+            FileWriter fw = new FileWriter("../tmp/actual.dat");
             fw.write(actualStr);
             fw.close();
 
-            String actual = Files.readString(Paths.get("src/test/resources/test01/expect/actual.txt"));
-            String expect = Files.readString(Paths.get("src/test/resources/test01/expect/expect.txt"));
+            String actual = Files.readString(Paths.get("../tmp/actual.dat"));
+            String expect = Files.readString(Paths.get("src/test/resources/test01/expect/expect.dat"));
 
             assertEquals(expect, actual, "result match OK");
 
@@ -51,15 +52,16 @@ class TlBuilderTest {
             TlBuilder tlManage = new TlBuilder();
             TlBuilder.DEFAULT_WORKSPACE_DIR = "src/test/resources/test02";
             TlProjct project = tlManage.build(PROJECT);
-            project.addStatFile("src/test/resources/test02/stats_file.txt");
+            project.addStatFile("src/test/resources/test02/stats_file.dat");
 
             String actualStr = project.getStringAll("");
-            FileWriter fw = new FileWriter("src/test/resources/test02/expect/actual.txt");
+            actualStr = actualStr.replace('¥', '/');    //  for Windows
+            FileWriter fw = new FileWriter("../tmp/actual.dat");
             fw.write(actualStr);
             fw.close();
 
-            String actual = Files.readString(Paths.get("src/test/resources/test02/expect/actual.txt"));
-            String expect = Files.readString(Paths.get("src/test/resources/test02/expect/expect.txt"));
+            String actual = Files.readString(Paths.get("../tmp/actual.dat"));
+            String expect = Files.readString(Paths.get("src/test/resources/test02/expect/expect.dat"));
 
             assertEquals(expect, actual, "result match OK");
 
