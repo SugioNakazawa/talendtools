@@ -8,6 +8,7 @@ import org.xml.sax.SAXException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,7 +28,11 @@ class TlBuilderTest {
             TlProjct project = tlManage.build("EXAMPLE");
 
             String actualStr = project.getStringAll("");
-            actualStr = actualStr.replace('¥', '/');    //  for Windows
+            actualStr = actualStr.replace('\\', '/'); // for Windows
+            File dir = new File("../tmp");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
             FileWriter fw = new FileWriter("../tmp/actual.dat");
             fw.write(actualStr);
             fw.close();
@@ -55,7 +60,11 @@ class TlBuilderTest {
             project.addStatFile("src/test/resources/test02/stats_file.dat");
 
             String actualStr = project.getStringAll("");
-            actualStr = actualStr.replace('¥', '/');    //  for Windows
+            actualStr = actualStr.replace('\\', '/'); // for Windows
+            File dir = new File("../tmp");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
             FileWriter fw = new FileWriter("../tmp/actual.dat");
             fw.write(actualStr);
             fw.close();
@@ -72,12 +81,12 @@ class TlBuilderTest {
 }
 /**
  * TODO main のテストケース
- *         String[] args = {
-            "-w", "/Users/nakazawasugio/talend/tjtool/app/src/test/resources/test01",
-            "-p", "SAMPLE",
-            "-o", "tmp",
-            "-show"
-
-        };
-
+ * String[] args = {
+ * "-w", "/Users/nakazawasugio/talend/tjtool/app/src/test/resources/test01",
+ * "-p", "SAMPLE",
+ * "-o", "tmp",
+ * "-show"
+ * 
+ * };
+ * 
  */
