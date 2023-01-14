@@ -1,4 +1,4 @@
-package talendtools;
+package jp.gr.java_conf.nkzw.talendtools;
 
 import java.util.ArrayList;
 import java.util.Collections;

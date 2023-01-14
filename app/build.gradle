@@ -48,7 +48,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'talendtools.TlBuilder'
+    mainClass = 'jp.gr.java_conf.nkzw.talendtools.TlBuilder'
 }
 
 tasks.named('test') {
