@@ -13,6 +13,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+/**
+ * Talend コンポーネント一覧 エクセルファイル
+ */
 public class TlWorkbook {
     private int START_ROW = 0;
     private int HEADER_ROWS = 1;
@@ -36,7 +39,7 @@ public class TlWorkbook {
     }
 
     public void outputWorkBook(TlProjct project, String outputDir) throws IOException {
-        //  ヘッダ編集
+        // ヘッダ編集
         createHeader();
         // ボディ編集
         int i_row = START_ROW + HEADER_ROWS;
@@ -72,13 +75,14 @@ public class TlWorkbook {
         }
         // 出力
         File dir = new File(outputDir);
-        if (!dir.exists()){
+        if (!dir.exists()) {
             dir.mkdirs();
         }
         FileOutputStream out = new FileOutputStream(outputDir + "/" + project.getProjectName() + ".xlsx");
         workbook.write(out);
         out.close();
     }
+
     public void createHeader() {
         // ヘッダー編集
         Row row = this.sheet.createRow(START_ROW);
@@ -107,6 +111,5 @@ public class TlWorkbook {
         cell.setCellValue("eraps_msec");
         cell.setCellStyle(this.cellstyleHeader);
     }
-
 
 }

@@ -1,0 +1,22 @@
+itemFile: mssql_0.1.item, name: mssql
+tableName: allcol_tbl, tableType: TABLE, schemaName: dbo
+columnName: col1, type: INT, length: 10
+columnName: col2, type: BIT, length: 1
+columnName: col3, type: DECIMAL, length: 18
+columnName: col4, type: MONEY, length: 19
+columnName: col5, type: NUMERIC, length: 18
+columnName: col6, type: SMALLINT, length: 5
+columnName: col7, type: TINYINT, length: 3
+columnName: col8, type: FLOAT, length: 53
+columnName: col9, type: REAL, length: 24
+columnName: col10, type: DATE, length: 10
+columnName: col11, type: DATETIME2, length: 27
+columnName: col12, type: DATETIME, length: 23
+columnName: col13, type: DATETIMEOFFSET, length: 34
+columnName: col14, type: SMALLDATETIME, length: 16
+columnName: col15, type: TIME, length: 16
+columnName: col16, type: CHAR, length: 1
+columnName: col17, type: TEXT, length: 2147483647
+columnName: col18, type: VARCHAR, length: 1
+columnName: col19, type: NCHAR, length: 1
+columnName: col20, type: NVARCHAR, length: 1

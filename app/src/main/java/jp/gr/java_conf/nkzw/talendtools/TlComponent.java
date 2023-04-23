@@ -1,7 +1,7 @@
 package jp.gr.java_conf.nkzw.talendtools;
 
 /**
- * Talendコンポーネント
+ * Talend process component define
  */
 public class TlComponent {
     /** id: ジョブ内でのユニークID */
@@ -50,12 +50,12 @@ public class TlComponent {
         this.erapsmsec = erapsmsec;
     }
 
-    public String getString(String prefix){
+    public String getString(String indent) {
         StringBuffer sb = new StringBuffer();
-        sb.append(prefix + "id: " + id + "  type: " + type);
-        if(execNum > 0){
+        sb.append(indent + "id: " + id + "  type: " + type);
+        if (execNum > 0) {
             sb.append("  execNum: " + execNum);
-            if(erapsmsec > 0){
+            if (erapsmsec > 0) {
                 sb.append("  erapsmsec: " + erapsmsec);
             }
         }

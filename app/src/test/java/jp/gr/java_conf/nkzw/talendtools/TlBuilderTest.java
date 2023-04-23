@@ -4,89 +4,107 @@
 package jp.gr.java_conf.nkzw.talendtools;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.junit.jupiter.api.Test;
-import org.xml.sax.SAXException;
 
 class TlBuilderTest {
+    // // 標準出力チェック用
+    // private ByteArrayOutputStream _baos;
+    // private PrintStream _out;
+
+    // @BeforeEach
+    // public void setUp() {
+    // _baos = new ByteArrayOutputStream();
+    // _out = System.out;
+    // System.setOut(
+    // new PrintStream(
+    // new BufferedOutputStream(_baos)));
+    // }
+
+    // @AfterEach
+    // public void tearDown() {
+    // System.setOut(_out);
+    // }
+
     /**
      * 正常パターン：統計情報なし
+     * directory: test01
      */
     @Test
-    void testNormal01() {
+    void testNormal() {
+        String[] args = {
+                "-w", Paths.get("src/test/resources/testNormal").toString(),
+                "-p", "EXAMPLE",
+                "-o", Paths.get("src/test/resources/testNormal/tmp").toAbsolutePath().toString(),
+                "-show",
+                "-out_components"
+        };
         try {
-            TlBuilder tlManage = new TlBuilder();
-            TlBuilder.DEFAULT_WORKSPACE_DIR = "src/test/resources/test01";
-            TlProjct project = tlManage.build("EXAMPLE");
+            TlBuilder.main(args);
 
-            String actualStr = project.getStringAll("");
-            actualStr = actualStr.replace('\\', '/'); // for Windows
-            File dir = new File("../tmp");
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            FileWriter fw = new FileWriter("../tmp/actual.dat");
-            fw.write(actualStr);
-            fw.close();
-
-            String actual = Files.readString(Paths.get("../tmp/actual.dat"));
-            String expect = Files.readString(Paths.get("src/test/resources/test01/expect/expect.dat"));
+            String actual = Files.readString(Paths.get("src/test/resources/testNormal/tmp/EXAMPLE.txt"));
+            String expect = Files.readString(Paths.get("src/test/resources/testNormal/expect/expect.dat"));
 
             assertEquals(expect, actual, "result match OK");
-
-        } catch (ParserConfigurationException | SAXException | IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            fail();
         }
     }
 
     /**
      * 正常パターン：統計情報付き
+     * directory: test02
      */
     @Test
-    void testNormal02() {
-        String PROJECT = "EXAMPLE";
+    void testNormalWithStat() {
+        String[] args = {
+                "-w", Paths.get("src/test/resources/testNormalWithStat").toString(),
+                "-p", "EXAMPLE",
+                "-o", Paths.get("src/test/resources/testNormalWithStat/tmp").toAbsolutePath().toString(),
+                "-s", "src/test/resources/testNormalWithStat/stats_file.dat",
+                "-show",
+                "-out_components"
+        };
         try {
-            TlBuilder tlManage = new TlBuilder();
-            TlBuilder.DEFAULT_WORKSPACE_DIR = "src/test/resources/test02";
-            TlProjct project = tlManage.build(PROJECT);
-            project.addStatFile("src/test/resources/test02/stats_file.dat");
+            TlBuilder.main(args);
 
-            String actualStr = project.getStringAll("");
-            actualStr = actualStr.replace('\\', '/'); // for Windows
-            File dir = new File("../tmp");
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            FileWriter fw = new FileWriter("../tmp/actual.dat");
-            fw.write(actualStr);
-            fw.close();
-
-            String actual = Files.readString(Paths.get("../tmp/actual.dat"));
-            String expect = Files.readString(Paths.get("src/test/resources/test02/expect/expect.dat"));
+            String actual = Files.readString(Paths.get("src/test/resources/testNormalWithStat/tmp/EXAMPLE.txt"));
+            String expect = Files.readString(Paths.get("src/test/resources/testNormalWithStat/expect/expect.dat"));
 
             assertEquals(expect, actual, "result match OK");
-
-        } catch (ParserConfigurationException | SAXException | IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            fail();
         }
     }
+
+    /**
+     * DB接続
+     */
+    @Test
+    void testConnection() {
+        String[] args = {
+                "-w", Paths.get("src/test/resources/testConnection").toString(),
+                "-p", "TALENDTOOLS",
+                "-o", Paths.get("src/test/resources/testConnection/tmp").toAbsolutePath().toString(),
+                "-show",
+                "-out_connectins"
+        };
+        try {
+            TlBuilder.main(args);
+
+            String actual = Files.readString(Paths.get("src/test/resources/testConnection/tmp/mssql_0.1.item.txt"));
+            String expect = Files.readString(Paths.get("src/test/resources/testConnection/expect/mssql_0.1.item.txt"));
+            assertEquals(expect, actual, "result match OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
 }
-/**
- * TODO main のテストケース
- * String[] args = {
- * "-w", "/Users/nakazawasugio/talend/tjtool/app/src/test/resources/test01",
- * "-p", "SAMPLE",
- * "-o", "tmp",
- * "-show"
- * 
- * };
- * 
- */

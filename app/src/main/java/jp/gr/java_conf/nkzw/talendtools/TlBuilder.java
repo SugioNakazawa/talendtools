@@ -3,12 +3,12 @@ package jp.gr.java_conf.nkzw.talendtools;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.cli.CommandLine;
@@ -18,19 +18,14 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Talendジョブ
+ * Talendソース解析オブジェクトビルダー
  */
 public class TlBuilder {
-    /** logger */
     private static final Logger LOGGER = LogManager.getLogger(TlBuilder.class);
 
     /** Talend workspace dir */
@@ -41,7 +36,7 @@ public class TlBuilder {
     static String DEFAULT_OUTPUT_DIR;
 
     /** Talendで作成したjobItemファイルリスト */
-    private List<File> jobItemFileList;
+    private List<File> itemFileList;
 
     // read properties file
     static {
@@ -59,99 +54,87 @@ public class TlBuilder {
             }
         } catch (FileNotFoundException e) {
             LOGGER.warn("no properties file. please create TlBuilder.properties.\n"
-                + "DEFAULT_WORKSPACE_DIR=xxxxxx\n"
-                + "DEFAULT_PROJECT_NAME\n"
-                + "DEFAULT_OUTPUT_DIR\n");
+                    + "DEFAULT_WORKSPACE_DIR=xxxxxx\n"
+                    + "DEFAULT_PROJECT_NAME\n"
+                    + "DEFAULT_OUTPUT_DIR\n");
         }
     }
 
     public TlBuilder() {
-        this.jobItemFileList = new ArrayList<File>();
+        this.itemFileList = new ArrayList<File>();
     }
 
     public TlProjct build(String projectName) throws ParserConfigurationException, SAXException, IOException {
         TlProjct projct = new TlProjct(projectName);
-        // ターゲットプロジェクトのルート
-        File workspace_dir = new File(DEFAULT_WORKSPACE_DIR + "/" + projectName + "/process");
-        // ジョブファイルリスト取得
-        List<File> jobFileList = getJobItem(workspace_dir);
-        // create job obj
-        for (File jobFile : jobFileList) {
-            projct.addJob(createJob(jobFile));
+        // ジョブのターゲットディレクトリ
+        File processDir = new File(DEFAULT_WORKSPACE_DIR + "/" + projectName + "/process");
+        if (processDir.exists()) {
+            // ジョブファイルリスト取得
+            itemFileList.clear();
+            List<File> jobFileList = recursiveSearchItemFile(processDir);
+            // create job obj
+            for (File file : jobFileList) {
+                projct.addJob(TlJob.createJob(file));
+            }
+        } else {
+            LOGGER.warn("not found process directory");
         }
+
+        // DB接続のターゲットディレクトリ
+        File connectinsDir = new File(DEFAULT_WORKSPACE_DIR + "/" + projectName + "/metadata/connections");
+        if (connectinsDir.exists()) {
+            // DB接続ファイルリスト取得
+            itemFileList.clear();
+            List<File> connectinFileList = recursiveSearchItemFile(connectinsDir);
+            // create connection obj
+            for (File file : connectinFileList) {
+                projct.addConnection(TlConnection.buildConnection(file));
+            }
+        } else {
+            LOGGER.warn("not found conctions directory");
+        }
+
         return projct;
     }
 
     /**
-     * ジョブファイルからジョブオブジェクトの生成。
-     * job.itemファイルをパースし、コンポーネントのID,typeを取得し、オブジェクトを生成。
-     * 
-     * @param jobfile
-     * @return
-     * @throws ParserConfigurationException
-     * @throws SAXException
-     * @throws IOException
-     */
-    public TlJob createJob(File jobfile) throws ParserConfigurationException, SAXException, IOException {
-        TlJob job = new TlJob(
-                jobfile.getName().replaceAll(".item", ""),
-                jobfile.toString());
-
-        Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(jobfile);
-        Element elementList = document.getDocumentElement();
-        NodeList nodes = elementList.getElementsByTagName("node");
-
-        for (int i = 0; i < nodes.getLength(); i++) {
-            Element node = (Element) nodes.item(i);
-            NodeList elmParaList = node.getChildNodes();
-            for (int j = 0; j < elmParaList.getLength(); j++) {
-                Node elmPara = elmParaList.item(j);
-                if ((elmPara.getAttributes() != null) && (elmPara.getAttributes().getNamedItem("name") != null)) {
-                    if (elmPara.getAttributes().getNamedItem("name").getNodeValue().equalsIgnoreCase("UNIQUE_NAME")) {
-                        job.addComponent(
-                                new TlComponent(
-                                        elmPara.getAttributes().getNamedItem("value").getNodeValue(),
-                                        node.getAttribute("componentName")));
-                    }
-                }
-            }
-        }
-        return job;
-    }
-
-    /**
-     * ジョブのItemファイルを再帰的に取得。
+     * Itemファイルを再帰的に取得。
      * 
      * @param dir
      * @return
      */
-    private List<File> getJobItem(File dir) {
+    private List<File> recursiveSearchItemFile(File dir) {
         File[] files = dir.listFiles();
         for (File file : files) {
             if (file.isDirectory()) {
-                getJobItem(file);
+                recursiveSearchItemFile(file);
             } else {
                 if (file.getName().endsWith(".item")) {
-                    jobItemFileList.add(file);
+                    itemFileList.add(file);
                 }
             }
         }
-        return jobItemFileList;
+        return itemFileList;
     }
 
     public static void main(String[] args) throws Exception {
+        LOGGER.info("TlBuilder start...");
         // コマンド・オプション定義
         Options options = new Options();
         options.addOption("h", "help", false, "help");
         options.addOption(
-                Option.builder("w").longOpt("workspaceDir").hasArg().desc("talend_workspace_directory").build());
+                Option.builder("o").longOpt("outputDir").hasArg().desc("output_directory").build());
         options.addOption(
                 Option.builder("p").longOpt("projectName").hasArg().desc("talend_project_name").build());
         options.addOption(
                 Option.builder("s").longOpt("statFilePath").hasArg().desc("stat_file_path").build());
         options.addOption(
-                Option.builder("o").longOpt("outputDir").hasArg().desc("output_directory").build());
-        options.addOption("show", false, "show conponent structure to concole");
+                Option.builder("t").longOpt("targetType").hasArg().desc("targetType ( component | db_chema )").build());
+        options.addOption(
+                Option.builder("w").longOpt("workspaceDir").hasArg().desc("talend_workspace_directory").build());
+        options.addOption("out_components", false, "output [project].xlsx and [project].txt");
+        options.addOption("out_connections", false, "output [db_connection.item].txt");
+        options.addOption("show", false, "show to concole");
         // コマンド・パース
         CommandLineParser parser = new DefaultParser();
         CommandLine commandLine = null;
@@ -172,12 +155,14 @@ public class TlBuilder {
         if (commandLine.hasOption("w")) {
             DEFAULT_WORKSPACE_DIR = commandLine.getOptionValue("w");
         }
-        commandLine.getOptionValue("w");
+        // commandLine.getOptionValue("w");
         String projectName = commandLine.getOptionValue("p", DEFAULT_PROJECT_NAME);
         String statFilePath = commandLine.getOptionValue("s");
         String outputDir = commandLine.getOptionValue("o", DEFAULT_OUTPUT_DIR);
+        String targetType = commandLine.getOptionValue("t", "component");
         System.out.println("WORKSPACE_DIR : " + DEFAULT_WORKSPACE_DIR);
         System.out.println("projectName : " + projectName);
+        System.out.println("targetType : " + targetType);
         System.out.println("statFilePath : " + statFilePath);
         System.out.println("outputDir : " + outputDir);
 
@@ -188,12 +173,32 @@ public class TlBuilder {
         if (commandLine.hasOption("s")) {
             project.addStatFile(statFilePath);
         }
-        // エクセル出力
-        (new TlWorkbook()).outputWorkBook(project, outputDir);
         // コンソール表示
         if (commandLine.hasOption("show")) {
-            System.out.println(project.getStringAll("\t"));
+            System.out.println(project.getAllComponentStr("", "\t"));
+            System.out.println(project.getAllConnectionStr("", "\t"));
         }
-        // System.out.println(project.getStringAll(""));
+        // structure,txt出力
+        if (commandLine.hasOption("out_components")) {
+            // エクセル出力
+            (new TlWorkbook()).outputWorkBook(project, outputDir);
+            // テキスト出力
+            String contents = project.getAllComponentStr("", "");
+            contents = contents.replace('\\', '/'); // for Windows
+            FileWriter fw = new FileWriter(outputDir + "/" + project.getProjectName() + ".txt");
+            fw.write(contents);
+            fw.close();
+        }
+        // DB接続 txt出力
+        if (commandLine.hasOption("out_connectins")) {
+            for (TlConnection con : project.getConnectionList()) {
+                String fileName = con.getItemFileName();
+                String contents = con.getString("", "");
+                contents = contents.replace('\\', '/'); // for Windows
+                FileWriter fw = new FileWriter(outputDir + "/" + fileName + ".txt");
+                fw.write(contents);
+                fw.close();
+            }
+        }
     }
 }

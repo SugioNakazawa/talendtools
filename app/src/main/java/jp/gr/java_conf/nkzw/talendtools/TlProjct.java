@@ -10,30 +10,35 @@ import java.util.List;
  * Talendプロジェクト
  */
 public class TlProjct {
-    /** プロジェクト名 */
+
     private String projectName;
-    /** ジョブリスト */
     private List<TlJob> jobList;
-    /** 統計情報 */
     private List<TlStat> statList;
+    private List<TlConnection> connectionList;
 
     public TlProjct(String projectName) {
         this.projectName = projectName;
         this.jobList = new ArrayList<TlJob>();
         this.statList = new ArrayList<TlStat>();
+        this.connectionList = new ArrayList<TlConnection>();
     }
 
     public String getProjectName() {
         return projectName;
     }
 
+    /**
+     * コンポーネント名でソートされたリスト
+     * 
+     * @return sorted list
+     */
     public List<TlJob> getJobList() {
         Collections.sort(this.jobList, new Comparator<TlJob>() {
             @Override
             public int compare(TlJob o1, TlJob o2) {
                 return o1.getJobName().compareTo(o2.getJobName());
             }
-            
+
         });
         return this.jobList;
     }
@@ -42,17 +47,37 @@ public class TlProjct {
         this.jobList.add(job);
     }
 
-    public String getStringAll(String prefix){
+    /**
+     * テキスト化したジョブコンポーネント構造
+     * 
+     * @param indent
+     * @return
+     */
+    public String getAllComponentStr(String indent, String inc) {
         StringBuilder sb = new StringBuilder();
-        sb.append("project: " + this.projectName + "\n");
-        for(TlJob job:getJobList()){
-            sb.append(job.getString(prefix));
+        sb.append(indent + "project: " + this.projectName + "\n");
+        for (TlJob job : getJobList()) {
+            sb.append(job.getString(indent + inc, inc));
         }
         return sb.toString();
     }
 
+    public String getAllConnectionStr(String indent, String inc) {
+        StringBuffer sb = new StringBuffer();
+        sb.append(indent + "connections\n");
+        for (TlConnection con : this.connectionList) {
+            sb.append(con.getString(indent + inc, inc));
+        }
+        return sb.toString();
+    }
+
+    public List<TlConnection> getConnectionList() {
+        return connectionList;
+    }
+
     /**
      * 統計情報ファイルを読み込み、コンポーネント情報更新。
+     * 
      * @param filepath
      */
     public void addStatFile(String filepath) {
@@ -61,23 +86,24 @@ public class TlProjct {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for(TlStat stat:this.statList){
-            TlComponent comp = search(stat.getJob()+"_"+stat.getJob_version(), stat.getOrigin());
-            if(comp != null){
-                comp.setExecNum(comp.getExecNum()+1);
-                try{
+        for (TlStat stat : this.statList) {
+            TlComponent comp = search(stat.getJob() + "_" + stat.getJob_version(), stat.getOrigin());
+            if (comp != null) {
+                comp.setExecNum(comp.getExecNum() + 1);
+                try {
                     comp.setErapsmsec(comp.getErapsmsec() + Integer.parseInt(stat.getDuration()));
-                }catch (NumberFormatException nfe){
+                } catch (NumberFormatException nfe) {
 
                 }
             }
         }
     }
-    private TlComponent search(String jobName, String componentId){
-        for(TlJob job:this.jobList){
-            if(jobName.equalsIgnoreCase(job.getJobName())){
-                for(TlComponent component:job.getComponentList()){
-                    if(componentId.equalsIgnoreCase(component.getId())){
+
+    private TlComponent search(String jobName, String componentId) {
+        for (TlJob job : this.jobList) {
+            if (jobName.equalsIgnoreCase(job.getJobName())) {
+                for (TlComponent component : job.getComponentList()) {
+                    if (componentId.equalsIgnoreCase(component.getId())) {
                         return component;
                     }
                 }
@@ -85,4 +111,9 @@ public class TlProjct {
         }
         return null;
     }
+
+    public void addConnection(TlConnection connection) {
+        this.connectionList.add(connection);
+    }
+
 }
