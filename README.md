@@ -25,6 +25,7 @@ usage: [opts]
  -o,--outputDir <arg>      output_directory
  -out_components           output [project].xlsx and [project].txt
  -out_connections          output [db_connection.item].txt
+ -out_ddl                  output create_[db_connection.item].sql
  -p,--projectName <arg>    talend_project_name
  -s,--statFilePath <arg>   stat_file_path
  -show                     show to concole
@@ -71,6 +72,14 @@ connections
 			columnName: col4, type: MONEY, length: 19
 
 ```
+### Ourput create table sql file ( param: -out_ddl)
+```
+CREATE TABLE [dbo].[allcol_tbl](
+	[col1] [INT] NOT NULL,
+	[col2] [BIT] NULL,
+	[col3] [DECIMAL](18, 0) NULL,
+```
+
 ## 参考機能
 ### STATS FILE（統計情報）について
 Talend Studioにて各コンポーネントの詳細設定の統計情報出力をチェックすることでコンポーネントごとの実行の開始／終了を統計情報ファイルに出力することが可能です。ただし、各コンポーネントごとに手動で行う必要があります。

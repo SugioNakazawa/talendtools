@@ -2,6 +2,7 @@ package jp.gr.java_conf.nkzw.talendtools;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class TlConnection {
         Element elementList = document.getDocumentElement();
         NodeList dbcon = elementList.getElementsByTagName("TalendMetadata:DatabaseConnection");
         if (dbcon.getLength() != 1) {
+            // 複数ある場合はエラー
             LOGGER.error("TalendMetadata:DatabaseConnection must be One!");
             new RuntimeException();
         }
@@ -69,17 +71,28 @@ public class TlConnection {
             for (int j = 0; j < elmParaList.getLength(); j++) {
                 Node elmPara = elmParaList.item(j);
                 // create column
-                TlColumn column = new TlColumn(elmPara.getAttributes().getNamedItem("name").getTextContent(),
+                TlColumn column = new TlColumn(
+                        elmPara.getAttributes().getNamedItem("name").getTextContent(),
                         elmPara.getAttributes().getNamedItem("sourceType").getTextContent());
+                // length
                 if (elmPara.getAttributes().getNamedItem("length") != null) {
-                    column.setLength(
-                            elmPara.getAttributes().getNamedItem("length").getTextContent());
+                    column.setLength(new BigDecimal(elmPara.getAttributes().getNamedItem("length").getTextContent()));
                 } else {
                     LOGGER.error("lenght is null. use 999. connection=" + connectinsFile.getName()
                             + " table=" + node.getAttribute("name")
                             + " columnName=" + elmPara.getAttributes().getNamedItem("name").getTextContent()
                             + " columnType=" + elmPara.getAttributes().getNamedItem("sourceType").getTextContent());
                 }
+                // not null
+                if (elmPara.getAttributes().getNamedItem("nullable") != null) {
+                    column.setNullable(
+                            Boolean.parseBoolean(
+                                    elmPara.getAttributes().getNamedItem("nullable").getTextContent()));
+                } else {
+                    column.setNullable(true);
+
+                }
+
                 table.addColumn(column);
             }
             connection.addTable(table);

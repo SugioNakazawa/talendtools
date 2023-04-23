@@ -49,4 +49,37 @@ public class TlTable {
         }
         return sb.toString();
     }
+
+    public String getCreateTableSql() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("CREATE TABLE [" + this.schemaName + "].["
+                + this.tableName + "](\n");
+        List<String> columns = new ArrayList<String>();
+        for (TlColumn col : this.columnList) {
+            StringBuffer colSb = new StringBuffer("\t");
+            // カラム名
+            colSb.append("[" + col.getName() + "]");
+            colSb.append(" [" + col.getType() + "]");
+            // 桁数
+            if (col.getDigitsNum() == 2) {
+                colSb.append("(");
+                colSb.append(col.getLength());
+                colSb.append(", 0)");
+            } else if (col.getDigitsNum() == 1) {
+                colSb.append("(");
+                colSb.append(col.getLength());
+                colSb.append(")");
+            }
+            // NOT NULL 制約
+            if (!col.isNullable()) {
+                colSb.append(" NOT");
+            }
+            colSb.append(" NULL");
+            columns.add(colSb.toString());
+        }
+        sb.append(String.join(",\n", columns));
+        sb.append("\n)\n");
+        sb.append("GO\n");
+        return sb.toString();
+    }
 }

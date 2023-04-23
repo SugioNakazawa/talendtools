@@ -93,13 +93,33 @@ class TlBuilderTest {
                 "-p", "TALENDTOOLS",
                 "-o", Paths.get("src/test/resources/testConnection/tmp").toAbsolutePath().toString(),
                 "-show",
-                "-out_connectins"
+                "-out_connections"
         };
         try {
             TlBuilder.main(args);
 
             String actual = Files.readString(Paths.get("src/test/resources/testConnection/tmp/mssql_0.1.item.txt"));
             String expect = Files.readString(Paths.get("src/test/resources/testConnection/expect/mssql_0.1.item.txt"));
+            assertEquals(expect, actual, "result match OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+    @Test
+    void testOutputDdl() {
+        String[] args = {
+                "-w", Paths.get("src/test/resources/testOutputDdl").toString(),
+                "-p", "TALENDTOOLS",
+                "-o", Paths.get("src/test/resources/testOutputDdl/tmp").toAbsolutePath().toString(),
+                "-show",
+                "-out_ddl"
+        };
+        try {
+            TlBuilder.main(args);
+
+            String actual = Files.readString(Paths.get("src/test/resources/testOutputDdl/tmp/create_mssql_0.1.item.sql"));
+            String expect = Files.readString(Paths.get("src/test/resources/testOutputDdl/expect/create_mssql_0.1.item.sql"));
             assertEquals(expect, actual, "result match OK");
         } catch (Exception e) {
             e.printStackTrace();

@@ -134,6 +134,7 @@ public class TlBuilder {
                 Option.builder("w").longOpt("workspaceDir").hasArg().desc("talend_workspace_directory").build());
         options.addOption("out_components", false, "output [project].xlsx and [project].txt");
         options.addOption("out_connections", false, "output [db_connection.item].txt");
+        options.addOption("out_ddl", false, "output create_[db_connection.item].sql");
         options.addOption("show", false, "show to concole");
         // コマンド・パース
         CommandLineParser parser = new DefaultParser();
@@ -188,15 +189,34 @@ public class TlBuilder {
             FileWriter fw = new FileWriter(outputDir + "/" + project.getProjectName() + ".txt");
             fw.write(contents);
             fw.close();
+            // コンソール表示
+            if (commandLine.hasOption("show")) {
+                System.out.println(project.getAllComponentStr("", "\t"));
+            }
         }
         // DB接続 txt出力
-        if (commandLine.hasOption("out_connectins")) {
+        if (commandLine.hasOption("out_connections")) {
             for (TlConnection con : project.getConnectionList()) {
-                String fileName = con.getItemFileName();
                 String contents = con.getString("", "");
                 contents = contents.replace('\\', '/'); // for Windows
-                FileWriter fw = new FileWriter(outputDir + "/" + fileName + ".txt");
+                FileWriter fw = new FileWriter(outputDir + "/" + con.getItemFileName() + ".txt");
                 fw.write(contents);
+                fw.close();
+            }
+            // コンソール表示
+            if (commandLine.hasOption("show")) {
+                System.out.println(project.getAllConnectionStr("", "\t"));
+            }
+        }
+        // DDL 出力
+        if (commandLine.hasOption("out_ddl")) {
+            for (TlConnection con : project.getConnectionList()) {
+                StringBuffer sb = new StringBuffer();
+                for (TlTable table : con.getTableList()) {
+                    sb.append(table.getCreateTableSql());
+                }
+                FileWriter fw = new FileWriter(outputDir + "/create_" + con.getItemFileName() + ".sql");
+                fw.write(sb.toString());
                 fw.close();
             }
         }
