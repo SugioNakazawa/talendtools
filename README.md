@@ -80,6 +80,12 @@ CREATE TABLE [dbo].[allcol_tbl](
 	[col3] [DECIMAL](18, 0) NULL,
 ```
 
+## Test case error for windows
+For Windows. Change git config for code of line end, cause of avoid errors in test case.
+```
+$ git config --global core.autocrlf input
+```
+
 ## 参考機能
 ### STATS FILE（統計情報）について
 Talend Studioにて各コンポーネントの詳細設定の統計情報出力をチェックすることでコンポーネントごとの実行の開始／終了を統計情報ファイルに出力することが可能です。ただし、各コンポーネントごとに手動で行う必要があります。
