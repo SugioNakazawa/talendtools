@@ -138,6 +138,11 @@ public class TlStat {
         return duration;
     }
 
+    /**
+     * テキスト出力用
+     * 
+     * @return
+     */
     public String getString() {
         StringBuilder sb = new StringBuilder();
         sb.append(job + ";");

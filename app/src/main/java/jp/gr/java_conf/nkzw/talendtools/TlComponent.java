@@ -50,6 +50,12 @@ public class TlComponent {
         this.erapsmsec = erapsmsec;
     }
 
+    /**
+     * テキスト出力用
+     * 
+     * @param indent
+     * @return
+     */
     public String getString(String indent) {
         StringBuffer sb = new StringBuffer();
         sb.append(indent + "id: " + id + "  type: " + type);

@@ -2,7 +2,6 @@ package jp.gr.java_conf.nkzw.talendtools;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +75,7 @@ public class TlConnection {
                         elmPara.getAttributes().getNamedItem("sourceType").getTextContent());
                 // length
                 if (elmPara.getAttributes().getNamedItem("length") != null) {
-                    column.setLength(new BigDecimal(elmPara.getAttributes().getNamedItem("length").getTextContent()));
+                    column.setLength(Integer.parseInt(elmPara.getAttributes().getNamedItem("length").getTextContent()));
                 } else {
                     LOGGER.error("lenght is null. use 999. connection=" + connectinsFile.getName()
                             + " table=" + node.getAttribute("name")
@@ -125,6 +124,13 @@ public class TlConnection {
         this.tableList = new ArrayList<TlTable>();
     }
 
+    /**
+     * テキスト出力用
+     * 
+     * @param indent
+     * @param inc
+     * @return
+     */
     public String getString(String indent, String inc) {
         StringBuffer sb = new StringBuffer();
         sb.append(indent + "itemFile: " + this.itemFileName

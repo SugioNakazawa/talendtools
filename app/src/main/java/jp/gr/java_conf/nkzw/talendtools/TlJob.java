@@ -100,6 +100,13 @@ public class TlJob {
         this.componentList.add(comp);
     }
 
+    /**
+     * テキスト出力用
+     * 
+     * @param indent
+     * @param inc
+     * @return
+     */
     public String getString(String indent, String inc) {
         StringBuffer sb = new StringBuffer();
         sb.append(indent + "job: " + jobName + "\n");
