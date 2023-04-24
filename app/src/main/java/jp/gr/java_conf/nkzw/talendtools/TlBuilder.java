@@ -199,7 +199,7 @@ public class TlBuilder {
             for (TlConnection con : project.getConnectionList()) {
                 String contents = con.getString("", "");
                 contents = contents.replace('\\', '/'); // for Windows
-                FileWriter fw = new FileWriter(outputDir + "/" + con.getItemFileName() + ".txt");
+                FileWriter fw = new FileWriter(outputDir + "/" + con.getItemFileName() + ".dat");
                 fw.write(contents);
                 fw.close();
             }

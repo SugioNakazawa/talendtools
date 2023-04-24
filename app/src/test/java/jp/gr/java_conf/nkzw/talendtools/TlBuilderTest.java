@@ -98,8 +98,8 @@ class TlBuilderTest {
         try {
             TlBuilder.main(args);
 
-            String actual = Files.readString(Paths.get("src/test/resources/testConnection/tmp/mssql_0.1.item.txt"));
-            String expect = Files.readString(Paths.get("src/test/resources/testConnection/expect/mssql_0.1.item.txt"));
+            String actual = Files.readString(Paths.get("src/test/resources/testConnection/tmp/mssql_0.1.item.dat"));
+            String expect = Files.readString(Paths.get("src/test/resources/testConnection/expect/mssql_0.1.item.dat"));
             assertEquals(expect, actual, "result match OK");
         } catch (Exception e) {
             e.printStackTrace();

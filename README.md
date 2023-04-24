@@ -24,7 +24,7 @@ usage: [opts]
  -h,--help                 help
  -o,--outputDir <arg>      output_directory
  -out_components           output [project].xlsx and [project].txt
- -out_connections          output [db_connection.item].txt
+ -out_connections          output [db_connection.item].dat
  -out_ddl                  output create_[db_connection.item].sql
  -p,--projectName <arg>    talend_project_name
  -s,--statFilePath <arg>   stat_file_path
