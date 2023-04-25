@@ -74,10 +74,6 @@ public class TlWorkbook {
             sheet.autoSizeColumn(i);
         }
         // 出力
-        File dir = new File(outputDir);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
         FileOutputStream out = new FileOutputStream(outputDir + "/" + project.getProjectName() + ".xlsx");
         workbook.write(out);
         out.close();

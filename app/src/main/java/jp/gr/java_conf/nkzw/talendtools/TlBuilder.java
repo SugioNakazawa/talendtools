@@ -179,6 +179,11 @@ public class TlBuilder {
             System.out.println(project.getAllComponentStr("", "\t"));
             System.out.println(project.getAllConnectionStr("", "\t"));
         }
+        // create output dir
+        File dir = new File(outputDir);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
         // structure,txt出力
         if (commandLine.hasOption("out_components")) {
             // エクセル出力
