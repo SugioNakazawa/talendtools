@@ -1,26 +1,59 @@
 package jp.gr.java_conf.nkzw.talendtools;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Talend metadata database connectin Column define
  */
 public class TlColumn {
-    private String name;
-    private ColumnType type;
-    private int length;
-    // 有効桁数
-    private int effectiveDigits;
-    private boolean nullable;
+    private static final Logger LOGGER = LogManager.getLogger(TlColumn.class);
 
-    public TlColumn(String name, String type) {
+    protected String name;
+    protected String type;
+    protected int length;
+    // 有効桁数
+    protected int effectiveDigits;
+    protected boolean nullable;
+
+    static public TlColumn createColumn(String name, String type, int length, String productId) {
+        TlColumn tlColumn;
+        if ("ORACLE".equals(productId)) {
+            tlColumn = new TlColumnOracle(name, type, length);
+        } else {
+            tlColumn = new TlColumn(name, type, length);
+        }
+        tlColumn.resetEffectiveDigits();
+        return tlColumn;
+    }
+
+    protected TlColumn(String name, String type, int length) {
         this.name = name;
-        this.type = getByName(type);
+        this.type = type;
+        this.length = length;
+        this.effectiveDigits = length;
+    }
+
+    /**
+     * カラム型に応じて有効桁数（DDLでの指定桁数）を設定。
+     */
+    protected void resetEffectiveDigits() {
+        TlColumnType colType = getByName(this.type, getColumnTypeList());
+        if ((colType.getMaxEffectiveDigits() > 0)
+                && (this.length > colType.getMaxEffectiveDigits())) {
+            this.effectiveDigits = colType.getMaxEffectiveDigits();
+        }
     }
 
     public String getName() {
         return name;
     }
 
-    public ColumnType getType() {
+    public String getType() {
         return type;
     }
 
@@ -30,31 +63,6 @@ public class TlColumn {
 
     public int getEffectiveDigits() {
         return effectiveDigits;
-    }
-
-    /**
-     * 型の長さをセット。特定の方は有効桁数を固定。
-     * 
-     * @param length
-     */
-    public void setLength(int length) {
-        // 長さ
-        this.length = length;
-        // 有効桁数は特定の型では固定
-        switch (type) {
-            case DATETIME2:
-            case DATETIMEOFFSET:
-            case TIME:
-                if (length > 7) {
-                    this.effectiveDigits = 7;
-                } else {
-                    this.effectiveDigits = length;
-                }
-                break;
-            default:
-                this.effectiveDigits = length;
-                break;
-        }
     }
 
     public boolean isNullable() {
@@ -82,26 +90,12 @@ public class TlColumn {
     }
 
     /**
-     * DDLで桁数指定の引数の数。
+     * DDLで指定する桁数の引数の数を型から取得。
      * 
      * @return
      */
-    private int getDigitsNum() {
-        switch (type) {
-            case DECIMAL:
-            case NUMERIC:
-                return 2;
-            case DATETIME2:
-            case DATETIMEOFFSET:
-            case TIME:
-            case CHAR:
-            case VARCHAR:
-            case NCHAR:
-            case NVARCHAR:
-                return 1;
-            default:
-                return 0;
-        }
+    protected int getDigitsNum() {
+        return getByName(type, getColumnTypeList()).getDigitsNum();
     }
 
     /**
@@ -132,35 +126,40 @@ public class TlColumn {
         return colSb.toString();
     }
 
-    public enum ColumnType {
-        INT,
-        BIT,
-        DECIMAL,
-        MONEY,
-        NUMERIC,
-        SMALLINT,
-        TINYINT,
-        FLOAT,
-        REAL,
-        DATE,
-        DATETIME2,
-        DATETIME,
-        DATETIMEOFFSET,
-        SMALLDATETIME,
-        TIME,
-        CHAR,
-        TEXT,
-        VARCHAR,
-        NCHAR,
-        NVARCHAR
+    public List<TlColumnType> getColumnTypeList() {
+        return COLUMN_TYPE_LIST;
     }
 
-    static public ColumnType getByName(String name) {
-        for (ColumnType colType : ColumnType.values()) {
-            if (name.equalsIgnoreCase(colType.toString())) {
+    static final private List<TlColumnType> COLUMN_TYPE_LIST = new ArrayList<TlColumnType>(Arrays.asList(
+            new TlColumnType("INT", 0, 0),
+            new TlColumnType("BIT", 0, 0),
+            new TlColumnType("DECIMAL", 2, 0),
+            new TlColumnType("MONEY", 0, 0),
+            new TlColumnType("NUMERIC", 2, 0),
+            new TlColumnType("SMALLINT", 0, 0),
+            new TlColumnType("TINYINT", 0, 0),
+            new TlColumnType("FLOAT", 0, 0),
+            new TlColumnType("REAL", 0, 0),
+            new TlColumnType("DATE", 0, 0),
+            new TlColumnType("DATETIME2", 1, 7),
+            new TlColumnType("DATETIME", 0, 0),
+            new TlColumnType("DATETIMEOFFSET", 1, 7),
+            new TlColumnType("SMALLDATETIME", 0, 0),
+            new TlColumnType("TIME", 1, 7),
+            new TlColumnType("CHAR", 1, 7),
+            new TlColumnType("TEXT", 0, 0),
+            new TlColumnType("VARCHAR", 1, 0),
+            new TlColumnType("NCHAR", 1, 0),
+            new TlColumnType("NVARCHAR", 1, 0)));
+
+    static public TlColumnType getByName(String type, List<TlColumnType> columnTypes) {
+        for (TlColumnType colType : columnTypes) {
+            if (type.equalsIgnoreCase(colType.getTypeName())) {
                 return colType;
             }
         }
+        LOGGER.error(type + " not match");
         return null;
+        // throw new RuntimeException();
     }
 }

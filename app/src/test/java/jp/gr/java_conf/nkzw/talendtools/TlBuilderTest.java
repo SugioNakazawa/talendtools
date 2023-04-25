@@ -106,6 +106,7 @@ class TlBuilderTest {
             fail();
         }
     }
+
     @Test
     void testOutputDdl() {
         String[] args = {
@@ -118,9 +119,44 @@ class TlBuilderTest {
         try {
             TlBuilder.main(args);
 
-            String actual = Files.readString(Paths.get("src/test/resources/testOutputDdl/tmp/create_mssql_0.1.item.sql"));
-            String expect = Files.readString(Paths.get("src/test/resources/testOutputDdl/expect/create_mssql_0.1.item.sql"));
+            String actual = Files
+                    .readString(Paths.get("src/test/resources/testOutputDdl/tmp/create_mssql_0.1.item.sql"));
+            String expect = Files
+                    .readString(Paths.get("src/test/resources/testOutputDdl/expect/create_mssql_0.1.item.sql"));
             assertEquals(expect, actual, "result match OK");
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    void testConnectionOracle() {
+        String[] args = {
+                "-w", Paths.get("src/test/resources/testConnectionOracle").toString(),
+                "-p", "TALENDTOOLS",
+                "-o", Paths.get("src/test/resources/testConnectionOracle/tmp").toAbsolutePath().toString(),
+                "-show",
+                "-out_connections",
+                "-out_ddl"
+        };
+        try {
+            TlBuilder.main(args);
+
+            {
+                String actual = Files
+                        .readString(Paths.get("src/test/resources/testConnectionOracle/tmp/oracle_0.1.item.dat"));
+                String expect = Files
+                        .readString(Paths.get("src/test/resources/testConnectionOracle/expect/oracle_0.1.item.dat"));
+                assertEquals(expect, actual, "result match OK");
+            }
+            {
+                String actual = Files
+                        .readString(Paths.get("src/test/resources/testConnectionOracle/tmp/create_oracle_0.1.item.sql"));
+                String expect = Files
+                        .readString(Paths.get("src/test/resources/testConnectionOracle/expect/create_oracle_0.1.item.sql"));
+                assertEquals(expect, actual, "result match OK");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             fail();

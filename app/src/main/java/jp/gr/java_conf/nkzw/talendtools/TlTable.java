@@ -12,7 +12,11 @@ public class TlTable {
     private List<TlColumn> columnList;
     private String schemaName;
 
-    public TlTable(String tableName, String tableType, String schemeName) {
+    static public TlTable createTable(String tableName, String tableType, String schemeName) {
+        return new TlTable(tableName, tableType, schemeName);
+    }
+
+    private TlTable(String tableName, String tableType, String schemeName) {
         this.tableName = tableName;
         this.tableType = tableType;
         this.schemaName = schemeName;

@@ -24,6 +24,7 @@ public class TlConnection {
     private static final Logger LOGGER = LogManager.getLogger(TlConnection.class);
 
     private String itemFileName;
+    private String productId;
     private NamedNodeMap databaseConnectionMap;
     private List<TlTable> tableList;
 
@@ -46,10 +47,12 @@ public class TlConnection {
             LOGGER.error("TalendMetadata:DatabaseConnection must be One!");
             new RuntimeException();
         }
+        Element dbConNode = (Element) elementList.getElementsByTagName("TalendMetadata:DatabaseConnection").item(0);
         // create TlConnectin
-        TlConnection connection = new TlConnection(connectinsFile.getName());
-        Element connectionNode = (Element) dbcon.item(0);
-        connection.setDbConnection(connectionNode.getAttributes());
+        TlConnection connection = new TlConnection(
+                connectinsFile.getName(),
+                dbConNode.getAttribute("ProductId"));
+        connection.setDbConnection(dbConNode.getAttributes());
 
         NodeList nodes = elementList.getElementsByTagName("ownedElement");
         String schemaName = "";
@@ -61,7 +64,7 @@ public class TlConnection {
                 continue;
             }
             // create table
-            TlTable table = new TlTable(
+            TlTable table = TlTable.createTable(
                     node.getAttributes().getNamedItem("name").getTextContent(),
                     node.getAttributes().getNamedItem("tableType").getTextContent(),
                     schemaName);
@@ -69,19 +72,18 @@ public class TlConnection {
             NodeList elmParaList = node.getElementsByTagName("feature");
             for (int j = 0; j < elmParaList.getLength(); j++) {
                 Node elmPara = elmParaList.item(j);
-                // create column
-                TlColumn column = new TlColumn(
-                        elmPara.getAttributes().getNamedItem("name").getTextContent(),
-                        elmPara.getAttributes().getNamedItem("sourceType").getTextContent());
-                // length
+                // 長さ
+                int length = 0;
                 if (elmPara.getAttributes().getNamedItem("length") != null) {
-                    column.setLength(Integer.parseInt(elmPara.getAttributes().getNamedItem("length").getTextContent()));
-                } else {
-                    LOGGER.error("lenght is null. use 999. connection=" + connectinsFile.getName()
-                            + " table=" + node.getAttribute("name")
-                            + " columnName=" + elmPara.getAttributes().getNamedItem("name").getTextContent()
-                            + " columnType=" + elmPara.getAttributes().getNamedItem("sourceType").getTextContent());
+                    length = (Integer.parseInt(elmPara.getAttributes().getNamedItem("length").getTextContent()));
                 }
+
+                // create column
+                TlColumn column = TlColumn.createColumn(
+                        elmPara.getAttributes().getNamedItem("name").getTextContent(),
+                        elmPara.getAttributes().getNamedItem("sourceType").getTextContent(),
+                        length,
+                        dbConNode.getAttribute("ProductId"));
                 // not null
                 if (elmPara.getAttributes().getNamedItem("nullable") != null) {
                     column.setNullable(
@@ -99,10 +101,19 @@ public class TlConnection {
         return connection;
     }
 
+    public String getProductId() {
+        return productId;
+    }
+
     public String getItemFileName() {
         return itemFileName;
     }
 
+    /**
+     * itemファイルのXML要素をそのまま保持。
+     * 
+     * @return
+     */
     public NamedNodeMap getDatabaseConnectionMap() {
         return databaseConnectionMap;
     }
@@ -119,8 +130,9 @@ public class TlConnection {
         this.databaseConnectionMap = attributes;
     }
 
-    public TlConnection(String itemFileName) {
+    public TlConnection(String itemFileName, String productId) {
         this.itemFileName = itemFileName;
+        this.productId = productId;
         this.tableList = new ArrayList<TlTable>();
     }
 
