@@ -28,7 +28,11 @@ public class MssqlColumn extends Column {
         new ColumnType("TEXT", 0, 0),
         new ColumnType("VARCHAR", 1, 0),
         new ColumnType("NCHAR", 1, 0),
-        new ColumnType("NVARCHAR", 1, 0)));
+        new ColumnType("NVARCHAR", 1, 0),
+        new ColumnType("INT IDENTITY", 2, 0),
+        new ColumnType("BIGINT", 0, 0),
+        new ColumnType("IMAGE", 0, 0)
+        ));
 
     public MssqlColumn(String name, String type, int length, int effectiveDigits, boolean nullable) {
         super(name, type, length, effectiveDigits, nullable);

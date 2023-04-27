@@ -87,43 +87,33 @@ class TlBuilderTest {
      * DB接続
      */
     @Test
-    void testConnection() {
+    void testConnectionMssql() {
         String[] args = {
-                "-w", Paths.get("src/test/resources/testConnection").toString(),
+                "-w", Paths.get("src/test/resources/testConnectionMssql").toString(),
                 "-p", "TALENDTOOLS",
-                "-o", Paths.get("src/test/resources/testConnection/tmp").toAbsolutePath().toString(),
+                "-o", Paths.get("src/test/resources/testConnectionMssql/tmp").toAbsolutePath().toString(),
                 "-show",
-                "-out_connections"
-        };
-        try {
-            TlBuilder.main(args);
-
-            String actual = Files.readString(Paths.get("src/test/resources/testConnection/tmp/mssql_0.1.item.dat"));
-            String expect = Files.readString(Paths.get("src/test/resources/testConnection/expect/mssql_0.1.item.dat"));
-            assertEquals(expect, actual, "result match OK");
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail();
-        }
-    }
-
-    @Test
-    void testOutputDdl() {
-        String[] args = {
-                "-w", Paths.get("src/test/resources/testOutputDdl").toString(),
-                "-p", "TALENDTOOLS",
-                "-o", Paths.get("src/test/resources/testOutputDdl/tmp").toAbsolutePath().toString(),
-                "-show",
+                "-out_connections",
                 "-out_ddl"
         };
         try {
             TlBuilder.main(args);
+            {
+                String actual = Files
+                        .readString(Paths.get("src/test/resources/testConnectionMssql/tmp/mssql_0.1.item.dat"));
+                String expect = Files
+                        .readString(Paths.get("src/test/resources/testConnectionMssql/expect/mssql_0.1.item.dat"));
+                assertEquals(expect, actual, "result match OK");
+            }
+            {
+                String actual = Files
+                        .readString(Paths.get("src/test/resources/testConnectionMssql/tmp/create_mssql_0.1.item.sql"));
+                String expect = Files
+                        .readString(
+                                Paths.get("src/test/resources/testConnectionMssql/expect/create_mssql_0.1.item.sql"));
+                assertEquals(expect, actual, "result match OK");
+            }
 
-            String actual = Files
-                    .readString(Paths.get("src/test/resources/testOutputDdl/tmp/create_mssql_0.1.item.sql"));
-            String expect = Files
-                    .readString(Paths.get("src/test/resources/testOutputDdl/expect/create_mssql_0.1.item.sql"));
-            assertEquals(expect, actual, "result match OK");
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -152,9 +142,11 @@ class TlBuilderTest {
             }
             {
                 String actual = Files
-                        .readString(Paths.get("src/test/resources/testConnectionOracle/tmp/create_oracle_0.1.item.sql"));
+                        .readString(
+                                Paths.get("src/test/resources/testConnectionOracle/tmp/create_oracle_0.1.item.sql"));
                 String expect = Files
-                        .readString(Paths.get("src/test/resources/testConnectionOracle/expect/create_oracle_0.1.item.sql"));
+                        .readString(
+                                Paths.get("src/test/resources/testConnectionOracle/expect/create_oracle_0.1.item.sql"));
                 assertEquals(expect, actual, "result match OK");
             }
         } catch (Exception e) {

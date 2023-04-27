@@ -27,7 +27,7 @@ public class OracleTable extends Table {
             sqlColumns.add(col.getCreateTableSql());
         }
         sb.append(String.join(",\n", sqlColumns));
-        sb.append("\n);");
+        sb.append("\n);\n\n");
         return sb.toString();
     }
 

@@ -28,7 +28,7 @@ public class MssqlTable extends Table {
         }
         sb.append(String.join(",\n", columns));
         sb.append("\n)\n");
-        sb.append("GO\n");
+        sb.append("GO\n\n");
         return sb.toString();
     }
 

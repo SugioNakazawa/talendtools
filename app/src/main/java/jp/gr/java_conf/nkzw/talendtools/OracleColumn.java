@@ -15,7 +15,14 @@ public class OracleColumn extends Column {
             new ColumnType("NCHAR", 1, 0),
             new ColumnType("NVARCHAR2", 1, 0),
             new ColumnType("DATE", 0, 0),
-            new ColumnType("TIMESTAMP", 1, 6)));
+            new ColumnType("TIMESTAMP", 1, 6),
+            new ColumnType("RAW", 1, 0),
+            new ColumnType("LONG", 0, 0),
+            new ColumnType("LONG RAW", 0, 0),
+            new ColumnType("BLOB", 0, 0),
+            new ColumnType("CLOB", 0, 0),
+            new ColumnType("NCLOB", 0, 0)
+            ));
 
     public OracleColumn(String name, String type, int length, int effectiveDigits, boolean nullable) {
         super(name, type, length, effectiveDigits, nullable);
