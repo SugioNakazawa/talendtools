@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.cli.CommandLine;
@@ -18,9 +19,13 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.xml.sax.SAXException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * Talendソース解析オブジェクトビルダー
@@ -88,7 +93,7 @@ public class TlBuilder {
             List<File> connectinFileList = recursiveSearchItemFile(connectinsDir);
             // create connection obj
             for (File file : connectinFileList) {
-                projct.addConnection(TlConnection.buildConnection(file));
+                projct.addConnection(buildConnection(file));
             }
         } else {
             LOGGER.warn("not found conctions directory");
@@ -115,6 +120,77 @@ public class TlBuilder {
             }
         }
         return itemFileList;
+    }
+
+    /**
+     * parse from connection.item file
+     * 
+     * @param connectinsFile
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
+    public TlConnection buildConnection(File connectinsFile)
+            throws ParserConfigurationException, SAXException, IOException {
+
+        Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(connectinsFile);
+        Element elementList = document.getDocumentElement();
+        NodeList dbcon = elementList.getElementsByTagName("TalendMetadata:DatabaseConnection");
+        if (dbcon.getLength() != 1) {
+            // 複数ある場合はエラー
+            LOGGER.error("TalendMetadata:DatabaseConnection must be One!");
+            new RuntimeException();
+        }
+        Element dbConNode = (Element) elementList.getElementsByTagName("TalendMetadata:DatabaseConnection").item(0);
+        // create TlConnectin
+        TlConnection connection = new TlConnection(
+                connectinsFile.getName(),
+                dbConNode.getAttribute("ProductId"));
+        connection.setDbConnection(dbConNode.getAttributes());
+
+        NodeList nodes = elementList.getElementsByTagName("ownedElement");
+        String schemaName = "";
+
+        TableFactory tableFactory = new TableFactory();
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Element node = (Element) nodes.item(i);
+            if (!node.hasAttribute("tableType")) {
+                schemaName = node.getAttribute("name");
+                continue;
+            }
+            // create table
+            Table table = tableFactory.createTable(
+                    connection.getProductId(),
+                    node.getAttributes().getNamedItem("name").getTextContent(),
+                    node.getAttributes().getNamedItem("tableType").getTextContent(),
+                    schemaName);
+
+            NodeList elmParaList = node.getElementsByTagName("feature");
+            for (int j = 0; j < elmParaList.getLength(); j++) {
+                Node elmPara = elmParaList.item(j);
+                // 長さ
+                int length = 0;
+                if (elmPara.getAttributes().getNamedItem("length") != null) {
+                    length = (Integer.parseInt(elmPara.getAttributes().getNamedItem("length").getTextContent()));
+                }
+                // not null
+                boolean nullable = true;
+                if (elmPara.getAttributes().getNamedItem("nullable") != null) {
+                    nullable = Boolean.parseBoolean(
+                            elmPara.getAttributes().getNamedItem("nullable")
+                                    .getTextContent());
+                }
+                // create column
+                table.addColumn(
+                        elmPara.getAttributes().getNamedItem("name").getTextContent(),
+                        elmPara.getAttributes().getNamedItem("sourceType").getTextContent(),
+                        length,
+                        length,
+                        nullable);
+            }
+            connection.addTable(table);
+        }
+        return connection;
     }
 
     public static void main(String[] args) throws Exception {
@@ -217,7 +293,7 @@ public class TlBuilder {
         if (commandLine.hasOption("out_ddl")) {
             for (TlConnection con : project.getConnectionList()) {
                 StringBuffer sb = new StringBuffer();
-                for (TlTable table : con.getTableList()) {
+                for (Table table : con.getTableList()) {
                     sb.append(table.getCreateTableSql());
                 }
                 FileWriter fw = new FileWriter(outputDir + "/create_" + con.getItemFileName() + ".sql");
