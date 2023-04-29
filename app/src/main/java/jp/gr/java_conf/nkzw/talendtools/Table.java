@@ -25,10 +25,11 @@ public abstract class Table {
      * @param name
      * @param Type
      * @param length
-     * @param effectiveDigits
+     * @param precision
+     * @param ddlDigits
      * @param nullable
      */
-    public abstract void addColumn(String name, String Type, int length, int effectiveDigits, boolean nullable);
+    public abstract void addColumn(String name, String Type, int length, int precision, int ddlDigits, boolean nullable);
 
     /**
      * CREATE TABLE SQL

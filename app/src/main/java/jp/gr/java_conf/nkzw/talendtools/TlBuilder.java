@@ -180,11 +180,19 @@ public class TlBuilder {
                             elmPara.getAttributes().getNamedItem("nullable")
                                     .getTextContent());
                 }
+                //  precision
+                int precision = -1;
+                if (elmPara.getAttributes().getNamedItem("precision") != null) {
+                    precision = Integer.parseInt(
+                            elmPara.getAttributes().getNamedItem("precision")
+                                    .getTextContent());
+                }
                 // create column
                 table.addColumn(
                         elmPara.getAttributes().getNamedItem("name").getTextContent(),
                         elmPara.getAttributes().getNamedItem("sourceType").getTextContent(),
                         length,
+                        precision,
                         length,
                         nullable);
             }
@@ -237,11 +245,12 @@ public class TlBuilder {
         String statFilePath = commandLine.getOptionValue("s");
         String outputDir = commandLine.getOptionValue("o", DEFAULT_OUTPUT_DIR);
         String targetType = commandLine.getOptionValue("t", "component");
-        System.out.println("WORKSPACE_DIR : " + DEFAULT_WORKSPACE_DIR);
-        System.out.println("projectName : " + projectName);
-        System.out.println("targetType : " + targetType);
-        System.out.println("statFilePath : " + statFilePath);
-        System.out.println("outputDir : " + outputDir);
+
+        LOGGER.info("WORKSPACE_DIR : " + DEFAULT_WORKSPACE_DIR
+                + ". projectName : " + projectName
+                + ", targetType : " + targetType
+                + ", statFilePath : " + statFilePath
+                + ", outputDir : " + outputDir);
 
         // // ビルダー実行
         TlBuilder builder = new TlBuilder();
@@ -249,11 +258,6 @@ public class TlBuilder {
         // 統計情報更新
         if (commandLine.hasOption("s")) {
             project.addStatFile(statFilePath);
-        }
-        // コンソール表示
-        if (commandLine.hasOption("show")) {
-            System.out.println(project.getAllComponentStr("", "\t"));
-            System.out.println(project.getAllConnectionStr("", "\t"));
         }
         // create output dir
         File dir = new File(outputDir);

@@ -12,10 +12,10 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 class TlBuilderTest {
-    // // 標準出力チェック用
+    static private String TEST_DIR = "src/test/resources/";
+    // 標準出力チェック用
     // private ByteArrayOutputStream _baos;
     // private PrintStream _out;
-
     // @BeforeEach
     // public void setUp() {
     // _baos = new ByteArrayOutputStream();
@@ -24,7 +24,6 @@ class TlBuilderTest {
     // new PrintStream(
     // new BufferedOutputStream(_baos)));
     // }
-
     // @AfterEach
     // public void tearDown() {
     // System.setOut(_out);
@@ -37,17 +36,17 @@ class TlBuilderTest {
     @Test
     void testNormal() {
         String[] args = {
-                "-w", Paths.get("src/test/resources/testNormal").toString(),
+                "-w", Paths.get(TEST_DIR + "testNormal").toString(),
                 "-p", "EXAMPLE",
-                "-o", Paths.get("src/test/resources/testNormal/tmp").toAbsolutePath().toString(),
-                "-show",
+                "-o", Paths.get(TEST_DIR + "testNormal/tmp").toAbsolutePath().toString(),
+                // "-show",
                 "-out_components"
         };
         try {
             TlBuilder.main(args);
 
-            String actual = Files.readString(Paths.get("src/test/resources/testNormal/tmp/EXAMPLE.txt"));
-            String expect = Files.readString(Paths.get("src/test/resources/testNormal/expect/expect.dat"));
+            String actual = Files.readString(Paths.get(TEST_DIR + "testNormal/tmp/EXAMPLE.txt"));
+            String expect = Files.readString(Paths.get(TEST_DIR + "testNormal/expect/expect.dat"));
 
             assertEquals(expect, actual, "result match OK");
         } catch (Exception e) {
@@ -63,18 +62,18 @@ class TlBuilderTest {
     @Test
     void testNormalWithStat() {
         String[] args = {
-                "-w", Paths.get("src/test/resources/testNormalWithStat").toString(),
+                "-w", Paths.get(TEST_DIR + "testNormalWithStat").toString(),
                 "-p", "EXAMPLE",
-                "-o", Paths.get("src/test/resources/testNormalWithStat/tmp").toAbsolutePath().toString(),
-                "-s", "src/test/resources/testNormalWithStat/stats_file.dat",
-                "-show",
+                "-o", Paths.get(TEST_DIR + "testNormalWithStat/tmp").toAbsolutePath().toString(),
+                "-s", TEST_DIR + "testNormalWithStat/stats_file.dat",
+                // "-show",
                 "-out_components"
         };
         try {
             TlBuilder.main(args);
 
-            String actual = Files.readString(Paths.get("src/test/resources/testNormalWithStat/tmp/EXAMPLE.txt"));
-            String expect = Files.readString(Paths.get("src/test/resources/testNormalWithStat/expect/expect.dat"));
+            String actual = Files.readString(Paths.get(TEST_DIR + "testNormalWithStat/tmp/EXAMPLE.txt"));
+            String expect = Files.readString(Paths.get(TEST_DIR + "testNormalWithStat/expect/expect.dat"));
 
             assertEquals(expect, actual, "result match OK");
         } catch (Exception e) {
@@ -89,10 +88,10 @@ class TlBuilderTest {
     @Test
     void testConnectionMssql() {
         String[] args = {
-                "-w", Paths.get("src/test/resources/testConnectionMssql").toString(),
+                "-w", Paths.get(TEST_DIR + "testConnectionMssql").toString(),
                 "-p", "TALENDTOOLS",
-                "-o", Paths.get("src/test/resources/testConnectionMssql/tmp").toAbsolutePath().toString(),
-                "-show",
+                "-o", Paths.get(TEST_DIR + "testConnectionMssql/tmp").toAbsolutePath().toString(),
+                // "-show",
                 "-out_connections",
                 "-out_ddl"
         };
@@ -100,17 +99,17 @@ class TlBuilderTest {
             TlBuilder.main(args);
             {
                 String actual = Files
-                        .readString(Paths.get("src/test/resources/testConnectionMssql/tmp/mssql_0.1.item.dat"));
+                        .readString(Paths.get(TEST_DIR + "testConnectionMssql/tmp/mssql_0.1.item.dat"));
                 String expect = Files
-                        .readString(Paths.get("src/test/resources/testConnectionMssql/expect/mssql_0.1.item.dat"));
+                        .readString(Paths.get(TEST_DIR + "testConnectionMssql/expect/mssql_0.1.item.dat"));
                 assertEquals(expect, actual, "result match OK");
             }
             {
                 String actual = Files
-                        .readString(Paths.get("src/test/resources/testConnectionMssql/tmp/create_mssql_0.1.item.sql"));
+                        .readString(Paths.get(TEST_DIR + "testConnectionMssql/tmp/create_mssql_0.1.item.sql"));
                 String expect = Files
                         .readString(
-                                Paths.get("src/test/resources/testConnectionMssql/expect/create_mssql_0.1.item.sql"));
+                                Paths.get(TEST_DIR + "testConnectionMssql/expect/create_mssql_0.1.item.sql"));
                 assertEquals(expect, actual, "result match OK");
             }
 
@@ -123,10 +122,10 @@ class TlBuilderTest {
     @Test
     void testConnectionOracle() {
         String[] args = {
-                "-w", Paths.get("src/test/resources/testConnectionOracle").toString(),
+                "-w", Paths.get(TEST_DIR + "testConnectionOracle").toString(),
                 "-p", "TALENDTOOLS",
-                "-o", Paths.get("src/test/resources/testConnectionOracle/tmp").toAbsolutePath().toString(),
-                "-show",
+                "-o", Paths.get(TEST_DIR + "testConnectionOracle/tmp").toAbsolutePath().toString(),
+                // "-show",
                 "-out_connections",
                 "-out_ddl"
         };
@@ -135,18 +134,18 @@ class TlBuilderTest {
 
             {
                 String actual = Files
-                        .readString(Paths.get("src/test/resources/testConnectionOracle/tmp/oracle_0.1.item.dat"));
+                        .readString(Paths.get(TEST_DIR + "testConnectionOracle/tmp/oracle_0.1.item.dat"));
                 String expect = Files
-                        .readString(Paths.get("src/test/resources/testConnectionOracle/expect/oracle_0.1.item.dat"));
+                        .readString(Paths.get(TEST_DIR + "testConnectionOracle/expect/oracle_0.1.item.dat"));
                 assertEquals(expect, actual, "result match OK");
             }
             {
                 String actual = Files
                         .readString(
-                                Paths.get("src/test/resources/testConnectionOracle/tmp/create_oracle_0.1.item.sql"));
+                                Paths.get(TEST_DIR + "testConnectionOracle/tmp/create_oracle_0.1.item.sql"));
                 String expect = Files
                         .readString(
-                                Paths.get("src/test/resources/testConnectionOracle/expect/create_oracle_0.1.item.sql"));
+                                Paths.get(TEST_DIR + "testConnectionOracle/expect/create_oracle_0.1.item.sql"));
                 assertEquals(expect, actual, "result match OK");
             }
         } catch (Exception e) {

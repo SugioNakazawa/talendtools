@@ -11,36 +11,24 @@ public class ColumnType {
     /** DDLで桁数に指定する引数の数 */
     private int digitsNum;
     /** DDLで指定する最大引数 */
-    private int maxEffectiveDigits;
+    private int maxDdlDigits;
 
-    public ColumnType(String typeName, int digitsNum, int maxEffectiveDigits) {
+    public ColumnType(String typeName, int digitsNum, int maxDdlDigits) {
         this.typeName = typeName;
         this.digitsNum = digitsNum;
-        this.maxEffectiveDigits = maxEffectiveDigits;
+        this.maxDdlDigits = maxDdlDigits;
     }
 
     public String getTypeName() {
         return typeName;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
     public int getDigitsNum() {
         return digitsNum;
     }
 
-    public void setDigitsNum(int digitsNum) {
-        this.digitsNum = digitsNum;
-    }
-
-    public int getMaxEffectiveDigits() {
-        return maxEffectiveDigits;
-    }
-
-    public void setMaxEffectiveDigits(int maxEffectiveDigits) {
-        this.maxEffectiveDigits = maxEffectiveDigits;
+    public int getMaxDdlDigits() {
+        return maxDdlDigits;
     }
 
 }

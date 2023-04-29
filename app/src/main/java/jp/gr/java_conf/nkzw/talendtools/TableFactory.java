@@ -26,9 +26,9 @@ public class TableFactory {
     public static void main(String[] args) {
         Table table1 = (new TableFactory()).createTable("ORACLE", "table1", "TABLE", "schema");
         System.out.println(table1);
-        table1.addColumn("col1", "NUMBER", 1, 0, false);
-        table1.addColumn("col2", "CHAR", 2, 0, true);
-        table1.addColumn("col3", "DATE", 99, 0, true);
+        table1.addColumn("col1", "NUMBER", 1, 0, 0, false);
+        table1.addColumn("col2", "CHAR", 2, 0, 0, true);
+        table1.addColumn("col3", "DATE", 99, 0, 0, true);
         for (Column column : table1.getColumnList()) {
             System.out.println(
                     column);

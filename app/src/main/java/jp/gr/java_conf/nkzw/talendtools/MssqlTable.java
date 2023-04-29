@@ -13,8 +13,8 @@ public class MssqlTable extends Table {
     }
 
     @Override
-    public void addColumn(String name, String type, int length, int effectiveDigits, boolean nullable) {
-        this.getColumnList().add(new MssqlColumn(name, type, length, effectiveDigits, nullable));
+    public void addColumn(String name, String type, int length, int precision, int ddlDigits, boolean nullable) {
+        this.getColumnList().add(new MssqlColumn(name, type, length, precision, ddlDigits, nullable));
     }
 
     @Override

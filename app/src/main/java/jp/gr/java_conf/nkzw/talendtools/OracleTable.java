@@ -12,8 +12,8 @@ public class OracleTable extends Table {
     }
 
     @Override
-    public void addColumn(String name, String type, int length, int effectiveDigits, boolean nullable) {
-        this.getColumnList().add(new OracleColumn(name, type, length, effectiveDigits, nullable));
+    public void addColumn(String name, String type, int length, int precision, int ddlDigits, boolean nullable) {
+        this.getColumnList().add(new OracleColumn(name, type, length, precision, ddlDigits, nullable));
     }
 
     @Override

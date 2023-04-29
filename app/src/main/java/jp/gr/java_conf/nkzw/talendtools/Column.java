@@ -13,19 +13,21 @@ public abstract class Column {
     private String name;
     private String type;
     private int length;
-    private int effectiveDigits;
+    private int precision;
+    private int ddlDigits;
     protected boolean nullable;
 
-    public Column(String name, String type, int length, int effectiveDigits, boolean nullable) {
+    public Column(String name, String type, int length, int precision, int ddlDigits, boolean nullable) {
         this.name = name;
         this.type = type;
         this.length = length;
+        this.precision = precision;
         this.nullable = nullable;
-        this.effectiveDigits = length;
+        this.ddlDigits = length;
         ColumnType colType = getByName(type);
-        if ((colType.getMaxEffectiveDigits() > 0)
-                && (this.length > colType.getMaxEffectiveDigits())) {
-            this.effectiveDigits = colType.getMaxEffectiveDigits();
+        if ((colType.getMaxDdlDigits() > 0)
+                && (this.length > colType.getMaxDdlDigits())) {
+            this.ddlDigits = colType.getMaxDdlDigits();
         }
     }
 
@@ -60,6 +62,7 @@ public abstract class Column {
         sb.append(indent + "columnName: " + this.name
                 + ", type: " + this.type
                 + ", length: " + this.length
+                + ", precision: " + this.precision
                 + ", nullable: " + this.nullable
                 + "\n");
         return sb.toString();
@@ -77,11 +80,15 @@ public abstract class Column {
         return length;
     }
 
-    public int getEffectiveDigits() {
-        return effectiveDigits;
+    public int getDdlDigits() {
+        return ddlDigits;
     }
 
     public boolean isNullable() {
         return nullable;
+    }
+
+    public int getPrecision() {
+        return precision;
     }
 }

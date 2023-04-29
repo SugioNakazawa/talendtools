@@ -1,9 +1,11 @@
 itemFile: oracle_0.1.item, name: oracle
 tableName: ALLCOL_TBL, tableType: TABLE, schemaName: 
-columnName: COL1, type: NUMBER, length: 0, nullable: false
-columnName: COL2, type: CHAR, length: 1, nullable: true
-columnName: COL3, type: VARCHAR2, length: 13, nullable: true
-columnName: COL4, type: NCHAR, length: 1, nullable: true
-columnName: COL5, type: NVARCHAR2, length: 15, nullable: true
-columnName: COL6, type: DATE, length: 7, nullable: true
-columnName: COL7, type: TIMESTAMP, length: 11, nullable: true
+columnName: COL1, type: NUMBER, length: 0, precision: -127, nullable: false
+columnName: COL2, type: CHAR, length: 1, precision: -1, nullable: true
+columnName: COL3, type: VARCHAR2, length: 13, precision: -1, nullable: true
+columnName: COL4, type: NCHAR, length: 1, precision: -1, nullable: true
+columnName: COL5, type: NVARCHAR2, length: 15, precision: -1, nullable: true
+columnName: COL6, type: DATE, length: 7, precision: -1, nullable: true
+columnName: COL7, type: TIMESTAMP, length: 11, precision: 6, nullable: true
+columnName: COL8, type: NUMBER, length: 10, precision: -1, nullable: true
+columnName: COL9, type: NUMBER, length: 10, precision: 3, nullable: true

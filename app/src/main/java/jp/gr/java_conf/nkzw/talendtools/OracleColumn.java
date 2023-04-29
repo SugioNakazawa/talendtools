@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class OracleColumn extends Column {
     static final private List<ColumnType> COLUMN_TYPE_LIST = new ArrayList<ColumnType>(Arrays.asList(
-            new ColumnType("NUMBER", 0, 0),
+            new ColumnType("NUMBER", 2, 0),
             new ColumnType("CHAR", 1, 0),
             new ColumnType("VARCHAR2", 1, 0),
             new ColumnType("NCHAR", 1, 0),
@@ -24,8 +24,8 @@ public class OracleColumn extends Column {
             new ColumnType("NCLOB", 0, 0)
             ));
 
-    public OracleColumn(String name, String type, int length, int effectiveDigits, boolean nullable) {
-        super(name, type, length, effectiveDigits, nullable);
+    public OracleColumn(String name, String type, int length, int precision, int ddlDigits, boolean nullable) {
+        super(name, type, length, precision, ddlDigits, nullable);
     }
 
     @Override
@@ -41,12 +41,23 @@ public class OracleColumn extends Column {
         colSb.append(" " + getType());
         // 桁数
         if (getDigitsNum() == 2) {
-        colSb.append("(");
-        colSb.append(getEffectiveDigits());
-        colSb.append(", 0)");
+            //  lengthのあるNUERIC
+            if (getLength() > 0){
+                if (getPrecision() > 0){
+                    //  少数
+                    colSb.append("(");
+                    colSb.append(getLength());
+                    colSb.append(", " + getPrecision() + ")");    
+                }else{
+                    // 整数
+                    colSb.append("(");
+                    colSb.append(getLength());
+                    colSb.append(")");    
+                }
+            }
         } else if (getDigitsNum() == 1) {
         colSb.append("(");
-        colSb.append(getEffectiveDigits());
+        colSb.append(getDdlDigits());
         colSb.append(")");
         }
         // NOT NULL 制約
