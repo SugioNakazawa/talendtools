@@ -41,8 +41,8 @@ id: tRunJob_1  type: tRunJob
 job: OnSubjobError_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t02_Concatening/OnSubjobError_0.1.item
 id: tFileOutputDelimited_1  type: tFileOutputDelimited
-id: tMsgBox_1  type: tMsgBox
-id: tMsgBox_2  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "The file is accessible, the job run correctly"
+id: tMsgBox_2  type: tMsgBox  message: ((String)globalMap.get("tFileOutputDelimited_1_ERROR_MESSAGE"))
 id: tRowGenerator_1  type: tRowGenerator
 job: beforeRunJobs_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/beforeRunJobs_0.1.item
@@ -94,14 +94,14 @@ id: tSQLTemplateAggregate_1  type: tSQLTemplateAggregate
 id: tSQLTemplateCommit_1  type: tSQLTemplateCommit
 job: jobAndContext_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/System_/tRunJob/tRunJobAndContext/jobAndContext_0.1.item
-id: tMsgBox_2  type: tMsgBox
+id: tMsgBox_2  type: tMsgBox  message: "JobParent is done! Press OK to launch the jobChildren"
 id: tRunJob_2  type: tRunJob
 job: jobChildren_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/System_/tRunJob/jobChildren_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: context.MESSAGE
 job: jobParent_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/System_/tRunJob/jobParent_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "JobParent is done! Press OK to launch the jobChildren"
 id: tRunJob_1  type: tRunJob
 job: jobSample_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/System_/tRunJobRow/jobSample_0.1.item
@@ -110,31 +110,41 @@ id: tRowGenerator_1  type: tRowGenerator
 job: link_if_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t02_Concatening/link_if_0.1.item
 id: tLogRow_1  type: tLogRow
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "tRowGenerator_1_NB_LINE > 100"
 id: tRowGenerator_1  type: tRowGenerator
 job: link_with_tDie_tWarn_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t02_Concatening/link_with_tDie_tWarn_0.1.item
-id: tDie_1  type: tDie
+id: tDie_1  type: tDie  message: "Talend Open Studio can't open the file: "+((String)context.getProperty("filepath"))
 id: tFileInputDelimited_1  type: tFileInputDelimited
 id: tJavaRow_1  type: tJavaRow
 id: tLogCatcher_1  type: tLogCatcher
 id: tLogRow_1  type: tLogRow
-id: tWarn_1  type: tWarn
+id: tWarn_1  type: tWarn  message: "The file is accessible, the job run correctly"
 job: onComponentError_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t02_Concatening/onComponentError_0.1.item
 id: tFileInputDelimited_1  type: tFileInputDelimited
 id: tJavaRow_1  type: tJavaRow
-id: tMsgBox_1  type: tMsgBox
-id: tMsgBox_2  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "The file is accessible, the job run correctly"
+id: tMsgBox_2  type: tMsgBox  message: "Talend Open Studio can't open the file: "+((String)context.getProperty("filepath"))
 job: priorTest_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/priorTest_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "Hello world! "
 job: readme_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/readme_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "Want to talk about Talend Open Studio?"
++"/n Need help to use the software?"
++"/n Want to make suggestions and discuss with the dev team?"
++"/n/n http://www.talendforge.org/forum/ is the right place!"
 job: repositoryContext_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t04_Context/repositoryContext_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "In the node Contexts of the Repository,/n"
++"a context nammed global_Context define the value of the int defaultDir: /n"
++"                                       "
++"defaultDir="+(context.root)+
+"/n/nIn the view Contexts of this Job Design,/n"
++"a local context define the value of the int sampleInt: /n"
++"                                       "
++"sampleInt="+(context.sampleInt)
 job: scd_step1_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Databases/SCD/scd_step1_0.1.item
 id: tMysqlOutput_2  type: tMysqlOutput
@@ -257,7 +267,7 @@ job: tContextLoad_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Misc/tContextLoad_0.1.item
 id: tContextLoad_1  type: tContextLoad
 id: tFileInputDelimited_1  type: tFileInputDelimited
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "context.uri="+context.uri
 job: tContextLoad_and_file_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t04_Context/tContextLoad_and_file_0.1.item
 id: tContextLoad_1  type: tContextLoad
@@ -270,7 +280,7 @@ id: tCreateTemporaryFile_1  type: tCreateTemporaryFile
 id: tFileInputDelimited_1  type: tFileInputDelimited
 id: tFileOutputDelimited_1  type: tFileOutputDelimited
 id: tLogRow_1  type: tLogRow
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "You can now check that the file "+((String)globalMap.get("tCreateTemporaryFile_1_FILEPATH"))+" has been deleted"
 id: tRowGenerator_1  type: tRowGenerator
 job: tDB2Input_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Databases/InOut/DB2/tDB2Input_0.1.item
@@ -291,8 +301,8 @@ id: tRowGenerator_1  type: tRowGenerator
 job: tDTDValidator_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/XML/tDTDValidator_0.1.item
 id: tDTDValidator_1  type: tDTDValidator
-id: tMsgBox_1  type: tMsgBox
-id: tMsgBox_2  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "File is Valid"
+id: tMsgBox_2  type: tMsgBox  message: "File isn't Valid"
 job: tDenormalize_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Processing/tDenormalize_0.1.item
 id: tDenormalize_1  type: tDenormalize
@@ -325,16 +335,16 @@ job: tFileCompare_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/File/Management/tFileCompare_0.1.item
 id: tFileCompare_1  type: tFileCompare
 id: tLogRow_1  type: tLogRow
-id: tMsgBox_1  type: tMsgBox
-id: tMsgBox_2  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "The 2 files are identique!"
+id: tMsgBox_2  type: tMsgBox  message: "The 2 files are not identique!"
 job: tFileDelete_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/File/Management/tFileDelete_0.1.item
 id: tFileDelete_1  type: tFileDelete
 job: tFileExist_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/File/Management/tFileExist_0.1.item
 id: tFileExist_1  type: tFileExist
-id: tMsgBox_1  type: tMsgBox
-id: tMsgBox_2  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "The file exist"
+id: tMsgBox_2  type: tMsgBox  message: "The file don't exist."
 job: tFileFetch_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Internet/tFileFetch_0.1.item
 id: tFileFetch_2  type: tFileFetch
@@ -447,7 +457,7 @@ id: tLogRow_1  type: tLogRow
 job: tFileRowCount_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/File/Management/tFileRowCount_0.1.item
 id: tFileRowCount_1  type: tFileRowCount
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: ((Integer)globalMap.get("tFileRowCount_1_COUNT"))+" rows"
 job: tFileTouch_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/File/Management/tFileTouch_0.1.item
 id: tFileTouch_1  type: tFileTouch
@@ -543,20 +553,20 @@ id: tJava_1  type: tJava
 id: tLibraryLoad_1  type: tLibraryLoad
 job: tLogCatcher1_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/LogError/tLogCatcher1_0.1.item
-id: tDie_1  type: tDie
+id: tDie_1  type: tDie  message: "tFileInputDelimited have a problem"
 id: tFileInputDelimited_1  type: tFileInputDelimited
 id: tFileOutputDelimited_1  type: tFileOutputDelimited
 id: tLogCatcher_1  type: tLogCatcher
 id: tLogRow_1  type: tLogRow
-id: tWarn_1  type: tWarn
+id: tWarn_1  type: tWarn  message: "this is a warning: the job has just been launched!"
 job: tLogCatcher2_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/LogError/tLogCatcher2_0.1.item
-id: tDie_1  type: tDie
+id: tDie_1  type: tDie  message: "tFileInputDelimited have a problem"
 id: tFileInputDelimited_1  type: tFileInputDelimited
 id: tFileOutputDelimited_1  type: tFileOutputDelimited
 id: tLogCatcher_1  type: tLogCatcher
 id: tLogRow_1  type: tLogRow
-id: tWarn_1  type: tWarn
+id: tWarn_1  type: tWarn  message: "this is a warning: the job has just been launched!"
 job: tLoop_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Misc/tLoop_0.1.item
 id: tJava_1  type: tJava
@@ -623,12 +633,12 @@ id: tMomOutput_2  type: tMomOutput
 id: tRowGenerator_1  type: tRowGenerator
 job: tMsgBox2_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Misc/tMsgBox2_0.1.item
-id: tDie_1  type: tDie
-id: tMsgBox_1  type: tMsgBox
-id: tMsgBox_3  type: tMsgBox
+id: tDie_1  type: tDie  message: "You choice is: NO"
+id: tMsgBox_1  type: tMsgBox  message: "This job is just a demo. Do you wan't to continue ?/n/nWhat's your choice?"
+id: tMsgBox_3  type: tMsgBox  message: "You choice is: YES/nTo continue... click on the Run button ;)"
 job: tMsgBox_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Misc/tMsgBox_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "Hello world!"
 job: tMysqlBulkExec_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Databases/Bulk/tMysqlBulkExec_0.1.item
 id: tMysqlBulkExec_1  type: tMysqlBulkExec
@@ -751,22 +761,22 @@ id: tLogRow_2  type: tLogRow
 id: tSchemaComplianceCheck_1  type: tSchemaComplianceCheck
 job: tSendMail_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Internet/tSendMail_0.1.item
-id: tSendMail_1  type: tSendMail
+id: tSendMail_1  type: tSendMail  message: "Please, see the attachment"
 job: tServerAlive_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Misc/tServerAlive_0.1.item
-id: tMsgBox_1  type: tMsgBox
-id: tMsgBox_2  type: tMsgBox
-id: tMsgBox_3  type: tMsgBox
-id: tMsgBox_4  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "You are connected to internet"
+id: tMsgBox_2  type: tMsgBox  message: "You are not connected to internet"
+id: tMsgBox_3  type: tMsgBox  message: "MySQL is started!"
+id: tMsgBox_4  type: tMsgBox  message: "MySQL is not started"
 id: tServerAlive_1  type: tServerAlive
 id: tServerAlive_2  type: tServerAlive
 job: tSetEnv_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/System_/tSetEnv_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "EnvVarSample="+System.getProperty("EnvVarSample") 
 id: tSetEnv_1  type: tSetEnv
 job: tSetGlobalVar_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/CustomCode/tSetGlobalVar_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: globalMap.get("FirstName")+ " "+globalMap.get("Name")+" was born on the "+globalMap.get("BirthDate")
 id: tSetGlobalVar_1  type: tSetGlobalVar
 job: tSleep_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Misc/tSleep_0.1.item
@@ -830,12 +840,12 @@ id: tFileCopy_1  type: tFileCopy
 id: tWaitForFile_1  type: tWaitForFile
 job: tWaitForSocket_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Orchestration/tWaitForSocket_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "The socket has been initialized on port 10000"
 id: tWaitForSocket_1  type: tWaitForSocket
 job: tWaitForSqlData_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/Orchestration/tWaitForSQL/tWaitForSqlData_0.1.item
 id: tCreateTable_1  type: tCreateTable
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "The trigger of the job tWaitForSqlData is done!"
 id: tMysqlConnection_1  type: tMysqlConnection
 id: tWaitForSqlData_1  type: tWaitForSqlData
 job: tWebServiceInput_0.1
@@ -844,12 +854,12 @@ id: tLogRow_1  type: tLogRow
 id: tWebServiceInput_1  type: tWebServiceInput
 job: tXSDValidator_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/XML/tXSDValidator_0.1.item
-id: tMsgBox_1  type: tMsgBox
-id: tMsgBox_2  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "File is Valid"
+id: tMsgBox_2  type: tMsgBox  message: "File isn't Valid"
 id: tXSDValidator_1  type: tXSDValidator
 job: tXSLT_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/XML/tXSLT_0.1.item
-id: tMsgBox_1  type: tMsgBox
+id: tMsgBox_1  type: tMsgBox  message: "The output "+((String)globalMap.get("tXSLT_1_OUTPUT_FILEPATH"))+" is now ready!"
 id: tXSLT_1  type: tXSLT
 job: xmlSample2_0.1
 jobFileName: src/test/resources/testNormalWithStat/EXAMPLE/process/t01_Compo/XML/xmlSample2_0.1.item

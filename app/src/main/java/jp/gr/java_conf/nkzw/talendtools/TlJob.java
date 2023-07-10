@@ -41,19 +41,30 @@ public class TlJob {
         for (int i = 0; i < nodes.getLength(); i++) {
             Element node = (Element) nodes.item(i);
             NodeList elmParaList = node.getChildNodes();
-            for (int j = 0; j < elmParaList.getLength(); j++) {
-                Node elmPara = elmParaList.item(j);
-                if ((elmPara.getAttributes() != null) && (elmPara.getAttributes().getNamedItem("name") != null)) {
-                    if (elmPara.getAttributes().getNamedItem("name").getNodeValue().equalsIgnoreCase("UNIQUE_NAME")) {
-                        job.addComponent(
-                                new TlComponent(
-                                        elmPara.getAttributes().getNamedItem("value").getNodeValue(),
-                                        node.getAttribute("componentName")));
-                    }
-                }
+            String uniqueName = getValueByName(elmParaList, "UNIQUE_NAME");
+            String messageName = getValueByName(elmParaList, "MESSAGE");
+            if (uniqueName != null) {
+                job.addComponent(
+                        new TlComponent(
+                                uniqueName,
+                                node.getAttribute("componentName"),
+                                messageName));
             }
         }
         return job;
+    }
+
+    static private String getValueByName(NodeList nodeList, String name) {
+        for (int j = 0; j < nodeList.getLength(); j++) {
+            Node node = nodeList.item(j);
+            if ((node.getAttributes() != null) 
+                && (node.getAttributes().getNamedItem("name") != null)) {
+                if (node.getAttributes().getNamedItem("name").getNodeValue().equalsIgnoreCase(name)) {
+                    return node.getAttributes().getNamedItem("value").getNodeValue();
+                }
+            }
+        }
+        return null;
     }
 
     /** ジョブ名 */

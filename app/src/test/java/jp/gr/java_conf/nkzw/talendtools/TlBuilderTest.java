@@ -3,6 +3,7 @@
  */
 package jp.gr.java_conf.nkzw.talendtools;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -45,9 +46,10 @@ class TlBuilderTest {
         try {
             TlBuilder.main(args);
 
-            String actual = Files.readString(Paths.get(TEST_DIR + "testNormal/tmp/EXAMPLE.txt"));
-            String expect = Files.readString(Paths.get(TEST_DIR + "testNormal/expect/expect.dat"));
-
+            String expect = Files.readString(Paths.get(TEST_DIR +
+            "testNormal/expect/EXAMPLE.txt"));
+            String actual = Files.readString(Paths.get(TEST_DIR +
+            "testNormal/tmp/EXAMPLE.txt"));
             assertEquals(expect, actual, "result match OK");
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,7 +75,7 @@ class TlBuilderTest {
             TlBuilder.main(args);
 
             String actual = Files.readString(Paths.get(TEST_DIR + "testNormalWithStat/tmp/EXAMPLE.txt"));
-            String expect = Files.readString(Paths.get(TEST_DIR + "testNormalWithStat/expect/expect.dat"));
+            String expect = Files.readString(Paths.get(TEST_DIR + "testNormalWithStat/expect/EXAMPLE.txt"));
 
             assertEquals(expect, actual, "result match OK");
         } catch (Exception e) {
