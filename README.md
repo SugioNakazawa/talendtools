@@ -43,8 +43,9 @@ DEFAULT_PROJECT_NAME=SAMPLE (Project name)
 DEFAULT_OUTPUT_DIR=.
 ```
 ## Run
+出力対象 ( -out_components ) を必ず指定します。
 ```
-mywork$ java -jar app-all.jar
+mywork$ java -jar app-all.jar -out_components -show
 ```
 ### Output console ( param: -show)
 ```

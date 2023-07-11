@@ -66,10 +66,13 @@ public class TlWorkbook {
 
                 cell = row.createCell(5);
                 cell.setCellValue(component.getErapsmsec());
+
+                cell = row.createCell(6);
+                cell.setCellValue(component.getMessage());
             }
         }
         // 自動セル幅
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 7; i++) {
             sheet.autoSizeColumn(i);
         }
         // 出力
@@ -104,6 +107,10 @@ public class TlWorkbook {
 
         cell = row.createCell(5);
         cell.setCellValue("eraps_msec");
+        cell.setCellStyle(this.cellstyleHeader);
+
+        cell = row.createCell(6);
+        cell.setCellValue("message");
         cell.setCellStyle(this.cellstyleHeader);
     }
 
