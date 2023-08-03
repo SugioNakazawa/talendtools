@@ -3,7 +3,6 @@
  */
 package jp.gr.java_conf.nkzw.talendtools;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 

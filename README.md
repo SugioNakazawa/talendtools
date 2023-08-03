@@ -1,13 +1,14 @@
 # talendtools
-Talend Studioで作成されたジョブ（.itemファイル）から使用されているコンポーネントを抽出し、Excelファイルに出力するツールです。
-試験的な機能として、統計ファイルから実行されたコンポーネントと実行時間を追加することも可能です。
-
+ Talend Studioで作成したジョブの使用コンポーネントを一覧化したExcelファイルを作成します。
+ また、Studioで作成したDB接続情報をテキスト化したり、テーブル作成DDLを出力する機能も追加しています。（Oracle, SqlServerのみ）
+ （試験的オプション）試験的な機能として、統計ファイルから実行されたコンポーネントと実行時間を追加することも可能です。
 ## Environment
 - JVM: jdk11
 - gradle: 7.5
 
 ## Prepare
 Download this project.
+Source code developed by Talend Studio.
 ### build
 ```
 talendtools$ ./gradlew shadowJar
@@ -24,26 +25,25 @@ usage: [opts]
  -h,--help                 help
  -o,--outputDir <arg>      output_directory
  -out_components           output [project].xlsx and [project].txt
- -out_connections          output [db_connection.item].dat
+ -out_connections          output [db_connection.item].txt
  -out_ddl                  output create_[db_connection.item].sql
  -p,--projectName <arg>    talend_project_name
  -s,--statFilePath <arg>   stat_file_path
  -show                     show to concole
- -t,--targetType <arg>     targetType ( component | db_chema )
  -w,--workspaceDir <arg>   talend_workspace_directory
 ```
-### Create properties file
+### Create properties file ( recommend )
 ```
 mywork$ vi TlBuilder.properties
 ```
-contents of file ( sample )
+sample
 ```
-DEFAULT_WORKSPACE_DIR=/Applications/TalendStudio-8.0.1/studio/workspace (workspace of Talend Studio)
+DEFAULT_WORKSPACE_DIR=/Applications/TOSDI-8.0.1/studio/workspace (workspace of Talend Studio)
 DEFAULT_PROJECT_NAME=SAMPLE (Project name)
-DEFAULT_OUTPUT_DIR=.
+DEFAULT_OUTPUT_DIR=~/tmp
 ```
 ## Run
-出力対象 ( -out_components ) を必ず指定します。
+出力対象 ( -out_components | -out_connections | out_ddl ) を必ず指定します。
 ```
 mywork$ java -jar app-all.jar -out_components -show
 ```
@@ -89,6 +89,7 @@ $ git config --global core.autocrlf input
 
 ## 参考機能
 ### STATS FILE（統計情報）について
-Talend Studioにて各コンポーネントの詳細設定の統計情報出力をチェックすることでコンポーネントごとの実行の開始／終了を統計情報ファイルに出力することが可能です。ただし、各コンポーネントごとに手動で行う必要があります。
-この統計情報ファイルを読み込ませることにより、実行されたかどうか及び実行時間がわかります。
+Talend Studioにて各コンポーネントの詳細設定の統計情報出力をチェックすることでコンポーネントごとの実行の開始／終了を統計情報ファイルに出力することが可能です。
+ただし、この設定は各コンポーネントごとに手動で行う必要があります。
+Studioでの実行時に作成される統計情報ファイルを読み込ませることにより、実行されたかどうか及び実行時間がわかります。
 このプログラムでは実行された回数と実行時間の累積をコンポーネントごとに集計します。

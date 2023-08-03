@@ -48,25 +48,26 @@ public class TlProjct {
     }
 
     /**
-     * テキスト化したジョブコンポーネント構造
+     * ジョブコンポーネント構造をテキスト化して取得。
      * 
-     * @param indent
+     * @param startIndent
+     * @param inc
      * @return
      */
-    public String getAllComponentStr(String indent, String inc) {
+    public String getAllComponentStr(String startIndent, String inc) {
         StringBuilder sb = new StringBuilder();
-        sb.append(indent + "project: " + this.projectName + "\n");
+        sb.append(startIndent + "project: " + this.projectName + "\n");
         for (TlJob job : getJobList()) {
-            sb.append(job.getString(indent + inc, inc));
+            sb.append(job.getString(startIndent + inc, inc));
         }
         return sb.toString();
     }
 
-    public String getAllConnectionStr(String indent, String inc) {
+    public String getAllConnectionStr(String startIndent, String inc) {
         StringBuffer sb = new StringBuffer();
-        sb.append(indent + "connections\n");
+        sb.append(startIndent + "connections\n");
         for (TlConnection con : this.connectionList) {
-            sb.append(con.getString(indent + inc, inc));
+            sb.append(con.getString(startIndent + inc, inc));
         }
         return sb.toString();
     }
@@ -92,8 +93,8 @@ public class TlProjct {
                 comp.setExecNum(comp.getExecNum() + 1);
                 try {
                     comp.setErapsmsec(comp.getErapsmsec() + Integer.parseInt(stat.getDuration()));
-                } catch (NumberFormatException nfe) {
-
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                 }
             }
         }
